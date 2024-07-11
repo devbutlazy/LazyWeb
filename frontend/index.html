@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<title>LazyDev • Головна</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/all.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/slick.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="assets/css/slide_checkbox.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/Dark-Mode-Switch.css" type="text/css" media="all">
+
+	<script async="" src="js/tag.js"></script>
+
+</head>
+
+<body data-theme="light">
+	<div id="preloader">
+		<div class="outer">
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</div>
+	</div>
+	<div class="site-wrapper">
+		<div class="mobile-header py-2 px-3 mt-4">
+			<button class="menu-icon mr-2">
+				<span id="dark"></span>
+				<span id="dark"></span>
+				<span id="dark"></span>
+			</button>
+			<a href="/" class="logo"><img src="images/logonofone_70.png" alt="icon"></a>
+		</div>
+
+		<header class="left float-left shadow-dark" id="header">
+			<button type="button" class="close" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+			<div class="header-inner d-flex align-items-start flex-column">
+				<a href="/"><img src="images/logonofone_70.png" alt="icon" height="128px" width="128px"></a>
+				<nav>
+					<ul class="vertical-menu scrollspy">
+						<li>
+							<div class="row" style="margin-top: 15px;">
+								<div class="col text-center d-flex justify-content-xl-center">
+									<i class="fas fa-sun d-xl-flex align-items-xl-center"
+										style="font-size: 24px; margin-right: 10px;"></i>
+									<div class="custom-control checkbox-cont" style="padding-left: 0px;">
+										<label class="checkbox-google" for="darkSwitch">
+											<input class="custom-control-input" type="checkbox" id="darkSwitch">
+											<span class="checkbox-google-switch"></span>
+										</label>
+									</div>
+									<i class="fas fa-moon d-xl-flex align-items-xl-center" style="font-size: 24px;"></i>
+								</div>
+							</div>
+						</li>
+						<li><a href="#home" class="active"><i class="icon-home"></i>Головна</a></li>
+						<li><a href="#about"><i class="icon-user"></i>Про мене</a></li>
+						<li><a href="/ddrv"><i class="icon-trophy"></i>DDRV</a></li>
+						<li><a href="#contact"><i class="icon-phone"></i>Контакти</a></li>
+					</ul>
+				</nav>
+				<div class="footer mt-auto">
+					<ul class="social-icons list-inline">
+						<li class="list-inline-item"><a href="https://github.com/devbutlazy" target="_blank"><i
+									class="fab fa-github"></i></a></li>
+						<li class="list-inline-item"><a href="https://t.me/devbutlazy" target="_blank"><i
+									class="fab fa-telegram"></i></a></li>
+					</ul>
+					<a href="/LICENSE"><span class="copyright">© 2024 LazyDev</span></a>
+				</div>
+			</div>
+		</header>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const darkSwitch = document.getElementById('darkSwitch');
+
+				// Function to set the theme
+				function setTheme(theme) {
+					document.body.setAttribute('data-theme', theme);
+				}
+
+				// Function to detect system theme
+				function detectSystemTheme() {
+					const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+					if (prefersDarkScheme.matches) {
+						setTheme('dark');
+						darkSwitch.checked = true;
+					} else {
+						setTheme('light');
+						darkSwitch.checked = false;
+					}
+				}
+
+				// Check system theme on load
+				detectSystemTheme();
+
+				// Event listener for the theme switcher
+				darkSwitch.addEventListener('change', () => {
+					if (darkSwitch.checked) {
+						setTheme('dark');
+					} else {
+						setTheme('light');
+					}
+				});
+			});
+		</script>
+
+		<main class="content float-right">
+
+			<section class="hero background parallax shadow-dark d-flex align-items-center" id="home"
+				src="images\logonofone_900.png" height="128px" width="128px">
+				<div class="cta mx-auto mt-2">
+					<h1 class="mt-0 mb-4">LazyDev тут<span class="dot"></span></h1>
+					<p class="mb-4">На цьому сайті ви знайдете усю потрібну інформацію про мене, та мої проекти.</p>
+					<p class="mb-4"><b>Кількість відвідувань сайту: </b><span id="visitsCount"></span></p>
+					<!-- Display the visits count here -->
+					<script>
+						const url = 'http://127.0.0.1:8000/visits';
+						const increment_url = 'http://127.0.0.1:8000/increment_visits';
+
+						// Function to format large numbers into a readable format
+						function formatNumber(num) {
+							if (num >= 1000000) {
+								return (num / 1000000).toFixed(1) + 'm';
+							} else if (num >= 1000) {
+								return (num / 1000).toFixed(1) + 'k';
+							} else {
+								return num.toString();
+							}
+						}
+
+						async function fetchData() {
+							try {
+								const incrementResponse = await fetch(increment_url, {
+									method: 'POST'
+								});
+
+								if (!incrementResponse.ok) {
+									throw new Error('Помилка при збільшенні кількості відвідувань');
+								}
+
+								const response = await fetch(url);
+
+								if (!response.ok) {
+									throw new Error('Помилка при отриманні кількості відвідувань');
+								}
+
+								const data = await response.json();
+								document.getElementById('visitsCount').innerText = formatNumber(data.visits);
+							} catch (error) {
+								document.getElementById('visitsCount').innerText = 'Помилка при отриманні кількості відвідувань';
+							}
+						}
+
+						fetchData();
+					</script>
+				</div>
+				<div class="overlay"></div>
+			</section>
+
+			<section id="about" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Про мене</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row">
+					<div class="col-md-3">
+						<img loading="lazy" src="images/logonofone.jpg" style="border-radius: 20px;" alt="about">
+					</div>
+					<div class="col-md-9">
+						<h2 id="dark" class="mt-4 mt-md-0 mb-4">Хай 👋,</h2>
+						<p class="mb-0">Я Лінивий Розробник, який займається програмуванням вже понад 5 років.
+							<br><br> Моєю головною мовою являється Python, на якому я пишу різні та корисні скрипти, а
+							також приймаю закази від інших людей.
+							<br><br> Ось тут мої відкриті проекти - <a style="color: #0f97ff;" target="_blank"
+								href="https://github.com/devbutlazy">*тик*</a>
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section id="works" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Мої проекти</h3>
+				<div class="spacer" data-height="40"></div>
+
+				<ul class="portfolio-filter list-inline">
+					<li class="current list-inline-item" data-filter="*">Усі</li>
+					<li class="list-inline-item" data-filter=".python">Пайтон</li>
+					<li class="list-inline-item" data-filter=".cplus">C++</li>
+					<li class="list-inline-item" data-filter=".other">Інше</li>
+				</ul>
+
+				<div class="pf-filter-wrapper mb-4">
+					<select class="select-css portfolio-filter-mobile">
+						<option value="*">Усі роботи</option>
+						<option value=".python">Пайтон</option>
+						<option value=".cplus">C++</option>
+						<option value=".other">Інше</option>
+					</select>
+				</div>
+				<div class="row portfolio-wrapper">
+
+					<div class="col-md-4 col-sm-6 grid-item python">
+						<a target="_blank" href="https://github.com/devbutlazy/GTokenChecker">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title" id="dark">GTokenChecker</h4>
+									<span class="term">Один з найшвидших та найпродуктивніших софтів в світі, для
+										перевірки валдіності діскорд токенів та їх інформації</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/gtokenchecker.png" alt="GTokenChecker">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item other">
+						<a target="_blank" href="https://devbutlazy.vn.ua">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title" id="dark">Мій сайт</h4>
+									<span class="term">Сайт-портфоліо для мене</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/lazydev-web.png" alt="LazyDev Portfolio">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item python">
+						<a target="_blank" href="https://github.com/devbutlazy/DiscoDance">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title" id="dark">DiscoDance</h4>
+									<span class="term">Музичний бот для діскорду, з конмфортними кнопками для регуляції
+										дій.</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/discodance.png" alt="ruina counter">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item python">
+						<a target="_blank" href="https://github.com/devbutlazy/Telegram-OLX-Wrapper">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">Telegram OLX Wrapper</h4>
+									<span class="term">Telegram бот для автоматичного пошуку нових оголошень за
+										допомогою скрапінга сайту. На жаль проект не релізнувся, із-за проблем з
+										преміумом системою</span>
+								</div>
+								<div class="thumb">
+									<img loafing="lazy" src="images/olxwrapper.png" alt="olxwrapper">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item python">
+						<a target="_blank" href="https://github.com/devbutlazy/blum-auto-clicker">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">Blum AI Clicker</h4>
+									<span class="term">Софт для автоматичного збирання поінтів в грі blum за допомогою
+										numpy та pyautogui</span>
+								</div>
+
+								<div class="thumb">
+									<img loading="lazy" src="images/blumai.png" alt="Portfolio-title">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item cplus">
+						<a target="_blank" href="https://github.com/devbutlazy/LazyTweaker">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">LazyTweaker</h4>
+									<span class="term">Софт для твіку Windows 11</span>
+								</div>
+
+								<div class="thumb">
+									<img loading="lazy" src="images/lazytweaker.png" alt="Portfolio-title">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item cplus">
+						<a>
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">Windows Activator</h4>
+									<span class="term">Софт для автоматичного розпізнавання версії та твіку Windows</span>
+								</div>
+
+								<div class="thumb">
+									<img loading="lazy" src="images/lazyactivator.png" alt="Portfolio-title">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="user-input" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Надіслати повідолмення</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row">
+					<div class="col-md-12 mb-4 mb-md-0">
+						<div class="contact-form">
+							<form id="contact-form" action="javascript:void(0);" method="post">
+								<div class="messages"></div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input id="form_name" type="text" name="name" class="form-control"
+												placeholder="Ваше ім'я" required="required"
+												data-error="Будь ласка, введіть ваше ім'я. Це поле обов'язкове."
+												style="background-color: #282929; color: white;">
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea id="form_message" name="message" class="form-control"
+												placeholder="Повідомлення" rows="4" required="required"
+												data-error="Будь ласка, введіть повідомлення. Це поле обов'язкове."
+												style="background-color: #282929; color: white;"></textarea>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-primary">Надіслати</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script>
+				$(document).ready(function () {
+					$('#contact-form').submit(function (event) {
+						event.preventDefault(); // Prevent default form submission
+						var formData = {
+							name: $('#form_name').val(),
+							message: $('#form_message').val()
+						};
+
+						$.ajax({
+							type: 'POST',
+							url: 'http://127.0.0.1:8000/send_message',
+							data: formData,
+							success: function (response) {
+								$('.messages').html('<div class="alert alert-success">Повідомлення надіслано!</div>');
+								setTimeout(function () {
+									$('.messages').empty();
+								}, 5000);
+
+								$('#form_name').val('');
+								$('#form_message').val('');
+							},
+							error: function (error) {
+								$('.messages').html('<div class="alert alert-danger">Не вдалось надіслати повідолмення. Спробуйте пізніше!</div>');
+								setTimeout(function () {
+									$('.messages').empty();
+								}, 5000);
+							}
+						});
+					});
+				});
+			</script>
+
+			<section id="contact" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Інша корисна інформація</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row">
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fas fa-envelope"></i>
+							<div class="details">
+								<h5 id="dark">Електронна адреса</h5>
+								<span><a href="mailto:devbutlazy@gmail.com">devbutlazy@gmail.com</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fab fa-telegram"></i>
+							<div class="details">
+								<h5 id="dark">Телеграм</h5>
+								<a href="https://t.me/pmartembay" target="_blank">@devbutlazy</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fab fa-telegram"></i>
+							<div class="details">
+								<h5 id="dark">Мій блог</h5>
+								<a href="https://t.me/blogbutlazy" target="_blank">@blogbutlazy</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fas fa-money-bill"></i>
+							<div class="details">
+								<h5 id="dark">Донат</h5>
+								<a target="_blank" href="https://donatello.to/devbutlazy">donatello.to/devbutlazy</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+	<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+	<script data-cfasync="false" src="js/email-decode.min.js"></script>
+	<script src="js/Dark-Mode-Switch.js"></script>
+	<script src="js/jquery-1.12.3.min.js"></script>
+	<script src="js/jquery.easing.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="js/isotope.pkgd.min.js"></script>
+	<script src="js/infinite-scroll.min.js"></script>
+	<script src="js/imagesloaded.pkgd.min.js"></script>
+	<script src="js/slick.min.js"></script>
+	<script src="js/validator.js"></script>
+	<script src="js/custom.js"></script>
+
+</body>
+
+</html>
