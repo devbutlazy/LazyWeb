@@ -10,7 +10,7 @@
 ```
 git clone https://github.com/devbutlazy/lazy-website --recursive
 ```
-`4` Go to `cmd.exe`, `cd PROJECT_PATH` and `pip install -r requirements.txt` to install required packages 
+`4` Go to `cmd.exe`, `cd PROJECT_PATH` and `pip install -r requirements.txt` to install required packages   
 `5` Enter the valid config to .config.env, to correctly run the website backend    
 `6` Edit the `index.html` and other files according to you and your information (because you are not me 😊)   
 `7` Run the backend using uvicorn 
