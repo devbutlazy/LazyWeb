@@ -37,7 +37,7 @@
 				<span id="dark"></span>
 				<span id="dark"></span>
 			</button>
-			<a href="/" class="logo"><img src="images/logonofone_70.png" alt="icon"></a>
+			<a href="/" class="logo"><img src="images/skinmc-avatar.png" alt="icon"></a>
 		</div>
 
 		<header class="left float-left shadow-dark" id="header">
@@ -45,7 +45,7 @@
 				<span aria-hidden="true">×</span>
 			</button>
 			<div class="header-inner d-flex align-items-start flex-column">
-				<a href="/"><img src="images/logonofone_70.png" alt="icon" height="128px" width="128px"></a>
+				<a href="/"><img src="images/skinmc-avatar.png" alt="icon" height="128px" width="128px"></a>
 				<nav>
 					<ul class="vertical-menu scrollspy">
 						<li>
@@ -65,7 +65,7 @@
 						</li>
 						<li><a href="#home" class="active"><i class="icon-home"></i>Головна</a></li>
 						<li><a href="#about"><i class="icon-user"></i>Про мене</a></li>
-						<li><a href="/ddrv"><i class="icon-trophy"></i>DDRV</a></li>
+						<li><a href="https://ddrv.devbutlazy.vn.ua"><i class="icon-trophy"></i>DDRV</a></li>
 						<li><a href="#contact"><i class="icon-phone"></i>Контакти</a></li>
 					</ul>
 				</nav>
@@ -80,6 +80,7 @@
 				</div>
 			</div>
 		</header>
+
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				const darkSwitch = document.getElementById('darkSwitch');
@@ -87,22 +88,28 @@
 				// Function to set the theme
 				function setTheme(theme) {
 					document.body.setAttribute('data-theme', theme);
+					localStorage.setItem('theme', theme);
 				}
 
-				// Function to detect system theme
-				function detectSystemTheme() {
-					const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-					if (prefersDarkScheme.matches) {
+				// Function to get the stored theme
+				function getStoredTheme() {
+					return localStorage.getItem('theme');
+				}
+
+				// Function to initialize the theme
+				function initializeTheme() {
+					const storedTheme = getStoredTheme();
+					if (storedTheme) {
+						setTheme(storedTheme);
+						darkSwitch.checked = (storedTheme === 'dark');
+					} else {
 						setTheme('dark');
 						darkSwitch.checked = true;
-					} else {
-						setTheme('light');
-						darkSwitch.checked = false;
 					}
 				}
 
-				// Check system theme on load
-				detectSystemTheme();
+				// Initialize the theme on load
+				initializeTheme();
 
 				// Event listener for the theme switcher
 				darkSwitch.addEventListener('change', () => {
@@ -225,7 +232,7 @@
 					</div>
 
 					<div class="col-md-4 col-sm-6 grid-item other">
-						<a target="_blank" href="https://devbutlazy.vn.ua">
+						<a target="_blank" href="https://github.com/devbutlazy/lazy-website">
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title" id="dark">Мій сайт</h4>
@@ -310,7 +317,8 @@
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title">Windows Activator</h4>
-									<span class="term">Софт для автоматичного розпізнавання версії та твіку Windows</span>
+									<span class="term">Софт для автоматичного розпізнавання версії та твіку
+										Windows</span>
 								</div>
 
 								<div class="thumb">
@@ -409,10 +417,10 @@
 					</div>
 					<div class="col-md-6 mb-4 mb-md-0">
 						<div class="contact-info mb-5">
-							<i class="fab fa-telegram"></i>
+							<i class="fab fa-steam"></i>
 							<div class="details">
-								<h5 id="dark">Телеграм</h5>
-								<a href="https://t.me/pmartembay" target="_blank">@devbutlazy</a>
+								<h5 id="dark">Стім</h5>
+								<a href="https://steamcommunity.com/profiles/76561199535902664/" target="_blank">@devbutlazy</a>
 							</div>
 						</div>
 					</div>
