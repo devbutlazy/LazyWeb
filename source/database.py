@@ -1,8 +1,6 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
-from typing import Optional
-
 from source.config import settings
 
 engine = create_async_engine(
@@ -23,22 +21,10 @@ class CounterORM(Model):
 
 
 async def create_tables() -> None:
+    """
+    Create database tables
+
+    :return: None
+    """
     async with engine.begin() as conn:
         await conn.run_sync(Model.metadata.create_all)
-
-
-async def get_count() -> Optional[int]:
-    async with new_session() as session:
-        counter = await session.get(CounterORM, 1)
-        return counter.counter if counter else None
-
-
-async def increment_count() -> None:
-    async with new_session() as session:
-        counter = await session.get(CounterORM, 1)
-        if counter:
-            counter.counter += 1
-        else:
-            counter = CounterORM(id=1, counter=1)
-            session.add(counter)
-        await session.commit()
