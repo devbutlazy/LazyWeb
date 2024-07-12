@@ -19,6 +19,35 @@
 
 	<script async="" src="js/tag.js"></script>
 
+	<style>
+		/* Default Light Theme */
+		body[data-theme="light"] .contact-form input,
+		body[data-theme="light"] .contact-form textarea {
+			background-color: #fff;
+			color: #000;
+			border: none;
+		}
+
+		body[data-theme="light"] .contact-form button {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+		}
+
+		/* Dark Theme */
+		body[data-theme="dark"] .contact-form input,
+		body[data-theme="dark"] .contact-form textarea {
+			background-color: #333;
+			color: #fff;
+			border: none;
+		}
+
+		body[data-theme="dark"] .contact-form button {
+			background-color: #0062cc;
+			color: #fff;
+			border: none;
+		}
+	</style>
 </head>
 
 <body data-theme="light">
@@ -344,8 +373,7 @@
 										<div class="form-group">
 											<input id="form_name" type="text" name="name" class="form-control"
 												placeholder="Ваше ім'я" required="required"
-												data-error="Будь ласка, введіть ваше ім'я. Це поле обов'язкове."
-												style="background-color: #282929; color: white;">
+												data-error="Будь ласка, введіть ваше ім'я. Це поле обов'язкове.">
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
@@ -353,8 +381,7 @@
 										<div class="form-group">
 											<textarea id="form_message" name="message" class="form-control"
 												placeholder="Повідомлення" rows="4" required="required"
-												data-error="Будь ласка, введіть повідомлення. Це поле обов'язкове."
-												style="background-color: #282929; color: white;"></textarea>
+												data-error="Будь ласка, введіть повідомлення. Це поле обов'язкове."></textarea>
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
@@ -420,7 +447,8 @@
 							<i class="fab fa-steam"></i>
 							<div class="details">
 								<h5 id="dark">Стім</h5>
-								<a href="https://steamcommunity.com/profiles/76561199535902664/" target="_blank">@devbutlazy</a>
+								<a href="https://steamcommunity.com/profiles/76561199535902664/"
+									target="_blank">@devbutlazy</a>
 							</div>
 						</div>
 					</div>
