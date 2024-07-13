@@ -1,4 +1,4 @@
-import requests
+import aiohttp
 from fastapi import APIRouter, Form, HTTPException
 
 from source.config import settings
@@ -15,17 +15,18 @@ async def send_message(name: str = Form(...), message: str = Form(...)) -> dict:
     :param message: message text
     :return: success message
     """
+
     try:
-        response = requests.get(
-            f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage",
-            params={
-                "chat_id": settings.TELEGRAM_CHAT_ID,
-                "text": f"‼️ Повідомлення від {name}\n\n{message}",
-            },
-        )
-        response.raise_for_status()
-        return {"message": "Повідомлення надіслано"}
-    except requests.RequestException as error:
+        async with aiohttp.ClientSession() as session:
+            await session.get(
+                f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage",
+                params={
+                    "chat_id": settings.TELEGRAM_CHAT_ID,
+                    "text": f"‼️ Повідомлення від {name}\n\n{message}",
+                },
+            )
+            return {"message": "Повідомлення надіслано"}
+    except aiohttp.ClientError as error:
         raise HTTPException(
             status_code=500, detail=f"Помилка відправки повідомлення: {str(error)}"
         )
