@@ -1,7 +1,7 @@
 # LazyDev Website 
 ## Website written by lazy developer, using Python (Backend Fastapi), HTML + CSS + JS (Frontend)
 
-## DEMO: https://devbutlazy.vn.ua
+## DEMO: https://devbutlazy.xyz
 
 ## Manual:
 `1` Download python from [python.org](https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe)  
@@ -37,7 +37,7 @@ uvicorn main:app --port 8000 --reload
 # TODO:
 - [x] Visits counter using async db
 - [x] Send messages to telegram, using requests
-- [x] Connect ddrv to https://ddrv.devbutlazy.vn.ua/
+- [x] Connect ddrv to https://ddrv.devbutlazy.xyz/
 - [ ] Blogging system
 - [ ] Add authorisation for blogging system (only for admins)
 

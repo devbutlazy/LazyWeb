@@ -46,9 +46,59 @@
 			border: none;
 		}
 	</style>
+	<script>
+		// Function to get the current theme from the browser
+		function getCurrentTheme() {
+			if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				return 'dark';
+			} else {
+				return 'light';
+			}
+		}
+
+		// Function to set the theme
+		function setTheme(theme) {
+			document.body.setAttribute('data-theme', theme);
+			localStorage.setItem('theme', theme);
+		}
+
+		// Function to get the stored theme
+		function getStoredTheme() {
+			return localStorage.getItem('theme');
+		}
+
+		// Function to initialize the theme
+		function initializeTheme() {
+			const storedTheme = getStoredTheme();
+			if (storedTheme) {
+				setTheme(storedTheme);
+				document.getElementById('darkSwitch').checked = (storedTheme === 'dark');
+			} else {
+				const currentTheme = getCurrentTheme();
+				setTheme(currentTheme);
+				document.getElementById('darkSwitch').checked = (currentTheme === 'dark');
+			}
+		}
+
+		// Initialize the theme as early as possible
+		document.addEventListener('DOMContentLoaded', () => {
+			initializeTheme();
+
+			const darkSwitch = document.getElementById('darkSwitch');
+
+			// Event listener for the theme switcher
+			darkSwitch.addEventListener('change', () => {
+				if (darkSwitch.checked) {
+					setTheme('dark');
+				} else {
+					setTheme('light');
+				}
+			});
+		});
+	</script>
 </head>
 
-<body data-theme="light">
+<body>
 	<div id="preloader">
 		<div class="outer">
 			<div class="spinner">
@@ -92,7 +142,7 @@
 						</li>
 						<li><a href="#home" class="active"><i class="icon-home"></i>Головна</a></li>
 						<li><a href="#about"><i class="icon-user"></i>Про мене</a></li>
-						<li><a href="https://ddrv.devbutlazy.vn.ua"><i class="icon-trophy"></i>DDRV</a></li>
+						<li><a href="https://ddrv.devbutlazy.xyz"><i class="icon-trophy"></i>DDRV</a></li>
 						<li><a href="#contact"><i class="icon-phone"></i>Контакти</a></li>
 					</ul>
 				</nav>
@@ -107,47 +157,6 @@
 				</div>
 			</div>
 		</header>
-
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				const darkSwitch = document.getElementById('darkSwitch');
-
-				// Function to set the theme
-				function setTheme(theme) {
-					document.body.setAttribute('data-theme', theme);
-					localStorage.setItem('theme', theme);
-				}
-
-				// Function to get the stored theme
-				function getStoredTheme() {
-					return localStorage.getItem('theme');
-				}
-
-				// Function to initialize the theme
-				function initializeTheme() {
-					const storedTheme = getStoredTheme();
-					if (storedTheme) {
-						setTheme(storedTheme);
-						darkSwitch.checked = (storedTheme === 'dark');
-					} else {
-						setTheme('dark');
-						darkSwitch.checked = true;
-					}
-				}
-
-				// Initialize the theme on load
-				initializeTheme();
-
-				// Event listener for the theme switcher
-				darkSwitch.addEventListener('change', () => {
-					if (darkSwitch.checked) {
-						setTheme('dark');
-					} else {
-						setTheme('light');
-					}
-				});
-			});
-		</script>
 
 		<main class="content float-right">
 
@@ -426,6 +435,8 @@
 					});
 				});
 			</script>
+
+
 
 			<section id="contact" class="shadow-blue white-bg padding">
 				<h3 class="section-title" id="dark">Інша корисна інформація</h3>

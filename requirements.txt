@@ -1,4 +1,6 @@
 fastapi
 uvicorn
 SQLAlchemy
-pydantic_settings
+pydantic-settings
+aiosqlite
+aiohttp
