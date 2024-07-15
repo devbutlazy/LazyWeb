@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     TELEGRAM_CHAT_ID: str  # Your and bot chat ID in telegram
     BOT_TOKEN: str  # Telegram bot token
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=".config.env")
 
 
 settings = Settings()

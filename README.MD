@@ -29,11 +29,28 @@ uvicorn main:app --port 8000 --reload
       It also stores it in a sqlite database, so after restart the counter will remain.
     - Sending messages to telegram using requests.
 
-# Docker configuration (soon)
+# Deploy with Docker on a VPS (ubuntu)
 
-# Deploy on VPS (soon)
+`1` Install docker.io, docker-compose, git
+```
+sudo apt install docker.io docker-compose git
+```
+`2` Clone this repo recursively
+```
+git clone https://github.com/devbutlazy/lazy-website --recursive
+```
+`3` Configure the .config.env file correctly (fill out the data)  
+`4` Build the docker
+```
+sudo docker build -t name_of_your_project .
+```
+`5` Use docker compose, to run it in the background
+```
+sudo docker-compose up -d
+```
 
-
+### That's it, now web runs on https://0.0.0.0:8000. You can use nginx or other staff to redirect it to normal uri.
+ 
 # TODO:
 - [x] Visits counter using async db
 - [x] Send messages to telegram, using requests
