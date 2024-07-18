@@ -18,6 +18,34 @@
 	<link rel="stylesheet" href="css/Dark-Mode-Switch.css" type="text/css" media="all">
 
 	<script async="" src="js/tag.js"></script>
+
+	<style>
+		body[data-theme="light"] .contact-form input,
+		body[data-theme="light"] .contact-form textarea {
+			background-color: #fff;
+			color: #000;
+			border: none;
+		}
+
+		body[data-theme="light"] .contact-form button {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+		}
+
+		body[data-theme="dark"] .contact-form input,
+		body[data-theme="dark"] .contact-form textarea {
+			background-color: #333;
+			color: #fff;
+			border: none;
+		}
+
+		body[data-theme="dark"] .contact-form button {
+			background-color: #0062cc;
+			color: #fff;
+			border: none;
+		}
+	</style>
 </head>
 
 <body>
@@ -90,7 +118,7 @@
 					<p class="mb-4"><b>Total visits: </b><span id="visitsCount"></span></p>
 					<!-- Display the visits count here -->
 					<script>
-						const url = 'http://127.0.0.1:8000/visits';
+						const url = 'https://api.devbutlazy.xyz/visits';
 						const increment_url = 'http://127.0.0.1:8000/increment_visits';
 
 						// Function to format large numbers into a readable format
