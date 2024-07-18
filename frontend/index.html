@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="css/Dark-Mode-Switch.css" type="text/css" media="all">
 
 	<script async="" src="js/tag.js"></script>
-
+	
 	<style>
 		body[data-theme="light"] .contact-form input,
 		body[data-theme="light"] .contact-form textarea {
@@ -119,7 +119,7 @@
 					<!-- Display the visits count here -->
 					<script>
 						const url = 'https://api.devbutlazy.xyz/visits';
-						const increment_url = 'http://127.0.0.1:8000/increment_visits';
+						const increment_url = 'https://api.devbutlazy.xyz/increment_visits';
 
 						// Function to format large numbers into a readable format
 						function formatNumber(num) {
@@ -359,7 +359,7 @@
 
 						$.ajax({
 							type: 'POST',
-							url: 'http://127.0.0.1:8000/send_message',
+							url: 'https://api.devbutlazy.xyz/send_message',
 							data: formData,
 							success: function (response) {
 								$('.messages').html('<div class="alert alert-success">Message sent!</div>');
