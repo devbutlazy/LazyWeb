@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
-from source.database import CounterORM, new_session
+from database.database import new_session
+from database.models import CounterORM
 
 router = APIRouter()
 
@@ -14,7 +15,7 @@ async def get_visits() -> dict:
     """
     async with new_session() as session:
         counter = await session.get(CounterORM, 1)
-        return {"status": 200, "visits": counter.counter if counter else 0}
+        return {"status": 200, "visits": counter.counter or 0}
 
 
 @router.post("/increment_visits")

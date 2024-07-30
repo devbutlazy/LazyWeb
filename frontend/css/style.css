@@ -88,7 +88,7 @@ a {
 }
 
 a:hover {
-    color: #0f97ff;
+    color: #027cd1;
     text-decoration: none
 }
 
@@ -124,12 +124,12 @@ pre {
 
 ::selection {
     color: #fff;
-    background: #0f97ff
+    background: #027cd1
 }
 
 ::-moz-selection {
     color: #fff;
-    background: #0f97ff
+    background: #027cd1
 }
 
 .z-1 {
@@ -403,7 +403,7 @@ header .copyright {
 
 .mobile-header .site-title.dot:after {
     content: "";
-    background-color: #0f97ff;
+    background-color: #027cd1;
     border-radius: 50%;
     display: inline-block;
     margin-left: 5px;
@@ -500,7 +500,7 @@ main.content.push {
 
 .hero .cta h1 .dot:after {
     content: "";
-    background-color: #0f97ff;
+    background-color: #027cd1;
     border-radius: 50%;
     display: inline-block;
     margin-left: 5px;
@@ -545,7 +545,7 @@ section.padding-60 {
 
 .section-title:after {
     content: "";
-    background: #0f97ff;
+    background: #027cd1;
     border-radius: 25px;
     display: block;
     height: 5px;
@@ -588,8 +588,8 @@ section.padding-60 {
 }
 
 .service-item:hover {
-    border-color: #0f97ff;
-    background: #0f97ff;
+    border-color: #027cd1;
+    background: #027cd1;
     color: #fff;
     -webkit-box-shadow: 0 6px 15px 0 rgba(0, 0, 0, .15);
     -moz-box-shadow: 0 6px 15px 0 rgba(0, 0, 0, .15);
@@ -612,7 +612,7 @@ section.padding-60 {
     left: calc(20% + 2px);
     bottom: 0;
     width: 1px;
-    background: #0f97ff
+    background: #027cd1
 }
 
 .timeline-line::before,
@@ -620,7 +620,7 @@ section.padding-60 {
     content: "";
     display: block;
     border-radius: 100%;
-    background: #0f97ff;
+    background: #027cd1;
     position: absolute;
     left: -3px;
     height: 7px;
@@ -661,7 +661,7 @@ section.padding-60 {
     position: absolute;
     width: 8px;
     height: 8px;
-    border: 1px solid #0f97ff;
+    border: 1px solid #027cd1;
     background-color: #fff;
     border-radius: 100%;
     padding: 4.5px;
@@ -747,7 +747,7 @@ section.padding-60 {
 }
 
 .portfolio-item .plus-icon {
-    color: #0f97ff;
+    color: #027cd1;
     background: #fff;
     border-radius: 100%;
     position: absolute;
@@ -766,7 +766,7 @@ section.padding-60 {
 }
 
 .portfolio-item .textdownload {
-    color: #0f97ff;
+    color: #027cd1;
     background: #fff;
     border-radius: 10px;
     position: absolute;
@@ -786,7 +786,7 @@ section.padding-60 {
 }
 
 .portfolio-item .mask {
-    background: #0f97ff;
+    background: #027cd1;
     position: absolute;
     left: 0;
     top: 0;
@@ -844,7 +844,7 @@ section.padding-60 {
 }
 
 .portfolio-info i {
-    color: #0f97ff;
+    color: #027cd1;
     font-size: 14px;
     margin-right: 10px
 }
@@ -870,7 +870,7 @@ section.padding-60 {
 }
 
 .portfolio-filter li.current {
-    background: #0f97ff;
+    background: #027cd1;
     color: #fff;
     padding: 6px 14px 4px;
     border-radius: .5rem
@@ -889,7 +889,7 @@ section.padding-60 {
 .price-item i {
     background: #fff;
     font-size: 24px;
-    color: #0f97ff;
+    color: #027cd1;
     display: block;
     border-radius: 50%;
     border: solid 1px #efefef;
@@ -914,7 +914,7 @@ section.padding-60 {
 .price-item .plan {
     font-size: 12px;
     color: #fff;
-    background: #0f97ff;
+    background: #027cd1;
     border-radius: 25px;
     display: inline-block;
     padding: 1px 9px
@@ -973,7 +973,7 @@ section.padding-60 {
 
 .testimonial-item .symbol {
     font-weight: 700;
-    color: #0f97ff;
+    color: #027cd1;
     font-size: 12px;
     margin-bottom: 20px;
     display: block
@@ -1064,7 +1064,7 @@ section.padding-60 {
 
 .blog-item .category {
     border-radius: 50px;
-    background: #0f97ff;
+    background: #027cd1;
     color: #fff;
     font-size: 12px;
     padding: 1px 8px;
@@ -1085,7 +1085,7 @@ section.padding-60 {
 
 .blog-item .meta li:after {
     content: "";
-    background: #0f97ff;
+    background: #027cd1;
     border-radius: 100%;
     display: inline-block;
     height: 3px;
@@ -1100,7 +1100,7 @@ section.padding-60 {
 
 .contact-info i {
     font-size: 24px;
-    color: #0f97ff;
+    color: #027cd1;
     float: left
 }
 
@@ -1127,7 +1127,7 @@ section.padding-60 {
     font-size: 24px;
     color: #fff;
     display: inline-block;
-    background: #0f97ff;
+    background: #027cd1;
     border-radius: 50%;
     height: 50px;
     line-height: 50px;
@@ -1136,7 +1136,7 @@ section.padding-60 {
 }
 
 .icon-simple {
-    color: #0f97ff;
+    color: #027cd1;
     font-size: 24px
 }
 
@@ -1198,7 +1198,7 @@ section.padding-60 {
 
 .btn-default {
     color: #fff;
-    background: #0f97ff
+    background: #027cd1
 }
 
 .btn-default:hover {
@@ -1221,7 +1221,7 @@ section.padding-60 {
 
 .btn-alt:hover {
     color: #fff;
-    background: #0f97ff;
+    background: #027cd1;
     -webkit-transform: translateY(-3px);
     -moz-transform: translateY(-3px);
     -ms-transform: translateY(-3px);
@@ -1300,19 +1300,27 @@ section.padding-60 {
     color: #fff
 }
 
+body[data-theme="light"] #preloader {
+    background-color: #ffffff;
+}
+
+body[data-theme="dark"] #preloader {
+    background-color: #000000;
+}
+
 #preloader {
-    background: #f6f7ff;
+    background-color: #fff;
     height: 100%;
     position: fixed;
     width: 100%;
-    z-index: 5
+    z-index: 5;
 }
 
 #preloader .outer {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
 }
 
 .spinner {
@@ -1332,7 +1340,7 @@ section.padding-60 {
     display: inline-block;
     position: absolute;
     top: 0;
-    background-color: #0f97ff;
+    background-color: #027cd1;
     border-radius: 100%;
     -webkit-animation: sk-bounce 2s infinite ease-in-out;
     animation: sk-bounce 2s infinite ease-in-out
@@ -1411,7 +1419,7 @@ section.padding-60 {
 }
 
 .form-control:focus {
-    border-color: #0f97ff;
+    border-color: #027cd1;
     outline: 0;
     -webkit-box-shadow: none;
     box-shadow: none
@@ -1525,7 +1533,7 @@ section.padding-60 {
     line-height: 3px;
     color: #fff;
     text-align: center;
-    background-color: #0f97ff;
+    background-color: #027cd1;
     -webkit-box-shadow: none;
     box-shadow: none;
     -webkit-transition: width .6s ease;
@@ -1539,7 +1547,7 @@ section.padding-60 {
 
 .social-icons li a {
     color: #fff;
-    background: #0f97ff;
+    background: #027cd1;
     border-radius: 50%;
     display: block;
     height: 30px;
@@ -1549,7 +1557,7 @@ section.padding-60 {
 }
 
 .social-icons li a:hover {
-    color: #0f97ff;
+    color: #027cd1;
     background: #fff
 }
 
@@ -1590,7 +1598,7 @@ section.padding-60 {
 }
 
 #return-to-top:hover {
-    background: #0f97ff
+    background: #027cd1
 }
 
 .videoWrapper {
@@ -1750,7 +1758,7 @@ section.padding-60 {
 }
 
 .slick-dots li.slick-active button:before {
-    background: #0f97ff;
+    background: #027cd1;
     opacity: 1;
     height: 7px;
     width: 7px
@@ -1768,7 +1776,7 @@ section.padding-60 {
 .slick-dots li button:hover:before,
 .slick-dots li button:focus:before {
     opacity: 1;
-    background: #0f97ff
+    background: #027cd1
 }
 
 @media(max-width:1200px) and (min-width:991px) {
@@ -1993,9 +2001,9 @@ a.button:active {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    border-color: #0f97ff;
+    border-color: #027cd1;
     color: #fff;
-    background-color: #0f97ff
+    background-color: #027cd1
 }
 
 .select-css:focus {
@@ -2011,7 +2019,7 @@ a.button:active {
     display: inline-block;
     height: 24px;
     width: 24px;
-    color: #0f97ff
+    color: #027cd1
 }
 
 img {

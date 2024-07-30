@@ -1,7 +1,7 @@
 import aiohttp
 from fastapi import APIRouter, Form, HTTPException
 
-from source.config import settings
+from database.config import settings
 
 router = APIRouter()
 
@@ -22,11 +22,11 @@ async def send_message(name: str = Form(...), message: str = Form(...)) -> dict:
                 f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage",
                 params={
                     "chat_id": settings.TELEGRAM_CHAT_ID,
-                    "text": f"‼️ Повідомлення від {name}\n\n{message}",
+                    "text": f"‼️ Message from {name}\n\n{message}",
                 },
             )
-            return {"message": "Повідомлення надіслано"}
+            return {"message": "Message sent"}
     except aiohttp.ClientError as error:
         raise HTTPException(
-            status_code=500, detail=f"Помилка відправки повідомлення: {str(error)}"
+            status_code=500, detail=f"Error while sending message: {str(error)}"
         )

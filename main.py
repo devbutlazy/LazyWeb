@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import asyncio
 from contextlib import asynccontextmanager
 
-from routers.visits_counter import router as visits_router
-from routers.message_handler import router as message_router
-from source.database import create_tables
+from routers.visits import router as visits_router
+from routers.contact import router as message_router
+from routers.blogs.blogs import router as blog_router
+
+from database.database import create_tables, drop_tables
+from routers.blogs.telegram import main
 
 
 @asynccontextmanager
@@ -28,3 +32,7 @@ app.add_middleware(
 
 app.include_router(visits_router)
 app.include_router(message_router)
+app.include_router(blog_router)
+
+if __name__ == "__main__":
+    asyncio.run(main())

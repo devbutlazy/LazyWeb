@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 COPY .config.env .
 
-CMD ["sh", "-c", "uvicorn main:app --host ${HOST:-0.0.0.0} --port ${PORT:-8000}"]
+CMD ["sh", "-c", "python main.py & uvicorn main:app --host ${HOST} --port ${PORT}"]
