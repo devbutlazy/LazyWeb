@@ -1,11 +1,12 @@
-from aiogram.types import Message
-from aiogram.fsm.state import State, StatesGroup
 from aiogram.filters import BaseFilter
+from aiogram.fsm.state import State, StatesGroup
+from aiogram.types import Message
 
 
 class Form(StatesGroup):
     title = State()
     content = State()
+    image_uri = State()
 
 
 class IsAdmin(BaseFilter):

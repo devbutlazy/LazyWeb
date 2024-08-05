@@ -6,3 +6,4 @@ aiosqlite
 aiohttp
 aiogram
 async-lru
+slowapi

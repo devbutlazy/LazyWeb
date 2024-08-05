@@ -1,9 +1,9 @@
+from async_lru import alru_cache
 from fastapi import APIRouter
 from sqlalchemy import select
 
 from database.database import new_session
 from database.models import BlogsORM
-from async_lru import alru_cache
 
 router = APIRouter()
 

@@ -1,3 +1,5 @@
+from typing import Optional
+
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
@@ -29,6 +31,7 @@ class BlogsORM(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str]
     content: Mapped[str]
+    image_uri: Mapped[Optional[str]]
     created_at: Mapped[str]
 
     repr_cols_num = 3

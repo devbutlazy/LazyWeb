@@ -69,8 +69,9 @@
 						</li>
 						<li><a href="#home" class="active"><i class="icon-home"></i>Home</a></li>
 						<li><a href="#about"><i class="icon-user"></i>About me</a></li>
-						<li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li>
+                        <!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
 						<li><a href="https://ddrv.devbutlazy.xyz" target="blank"><i class="icon-folder"></i>DDRV</a>
+                        <li><a href="https://blog.devbutlazy.xyz" target="blank"><i class="icon-puzzle"></i>Blog</a>
 						</li>
 					</ul>
 				</nav>
@@ -308,6 +309,7 @@
 				</div>
 			</section>
 
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<script>
 				$(document).ready(function () {
 					$('#contact-form').submit(function (event) {
@@ -322,7 +324,7 @@
 							url: 'http://127.0.0.1:8000/send_message',
 							data: formData,
 							success: function (response) {
-								$('.messages').html('<div class="alert alert-success">Message sent!</div>');
+                                $('.messages').html('<div class="alert alert-success">Message semt!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
@@ -331,7 +333,7 @@
 								$('#form_message').val('');
 							},
 							error: function (error) {
-								$('.messages').html('<div class="alert alert-danger">An error occurred while sending the message! Please contact us directly.</div>');
+                                $('.messages').html('<div class="alert alert-danger">Cooldown, please try again later!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
@@ -342,8 +344,7 @@
 			</script>
 
 
-
-			<section id="contact" class="shadow-blue white-bg padding">
+            <section class="shadow-blue white-bg padding" id="contact">
 				<h3 class="section-title" id="dark">Links</h3>
 				<div class="spacer" data-height="40"></div>
 				<div class="row">

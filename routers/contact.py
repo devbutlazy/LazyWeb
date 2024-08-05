@@ -1,13 +1,17 @@
 import aiohttp
-from fastapi import APIRouter, Form, HTTPException
+from fastapi import Form, HTTPException, Request, APIRouter
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 
 from database.config import settings
 
+limiter = Limiter(key_func=get_remote_address)
 router = APIRouter()
 
 
 @router.post("/send_message")
-async def send_message(name: str = Form(...), message: str = Form(...)) -> dict:
+@limiter.limit("5/minute")
+async def send_message(request: Request, name: str = Form(...), message: str = Form(...)) -> dict:
     """
     Send message to telegram chat
 

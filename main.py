@@ -1,15 +1,16 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
 import asyncio
 from contextlib import asynccontextmanager
 
-from routers.visits import router as visits_router
-from routers.contact import router as message_router
-from routers.blogs.blogs import router as blog_router
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
-from database.database import create_tables, drop_tables
+from database.database import create_tables
+from routers.blogs.blogs import router as blog_router
 from routers.blogs.telegram import main
+from routers.contact import router as message_router, limiter
+from routers.visits import router as visits_router
 
 
 @asynccontextmanager
@@ -20,10 +21,13 @@ async def lifespan(_: FastAPI):
     print("The app is shutting down")
 
 
-app = FastAPI()
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None)
+
+app.state.limiter = limiter  # type: ignore
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore
+
 app.add_middleware(
-    CORSMiddleware,
+    CORSMiddleware,  # type: ignore
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],

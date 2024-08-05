@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>LazyDev • Home</title>
+    <title>LazyDev • Blogs</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -90,68 +90,7 @@
 
 		<main class="content float-right">
 
-
-			<!-- <section id="about" class="shadow-blue white-bg padding">
-				<h3 class="section-title" id="dark">Blog title</h3>
-				<div class="spacer" data-height="40"></div>
-				<div class="row">
-					<div class="col-md-9">
-						<h2 id="dark" class="mt-4 mt-md-0 mb-4">Sup,</h2>
-						<p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi adipisci esse
-							repellat optio sint exercitationem, voluptas quisquam quam, voluptatem nobis quae
-							asperiores. Neque impedit asperiores reprehenderit consectetur non quod id.</a>
-						</p>
-					</div>
-				</div>
-			</section> -->
-
 			<div id="blog-container" class="container mt-5"></div>
-
-			<script>
-				async function fetchBlogs() {
-					try {
-						const response = await fetch('http://127.0.0.1:8000/get_blogs');
-						const data = await response.json();
-						return data.blogs;
-					} catch (error) {
-						console.error('Error fetching blogs:', error);
-					}
-				}
-
-				function createBlogSection(blog) {
-					const sanitizedContent = DOMPurify.sanitize(blog.content, {
-						ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'ul', 'li', 'ol', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'br'],
-						ALLOWED_ATTR: ['href', 'src', 'alt', 'title']
-					});
-					return `
-					<section id="blog${blog.id}" class="shadow-blue white-bg padding">
-						<h3 class="section-title" id="dark">${blog.title}</h3>
-						<div class="spacer" data-height="40"></div>
-						<div class="row">
-							<div class="col-md-9">
-								<h2 id="dark" class="mt-4 mt-md-0 mb-4"></h2>
-								<p class="mb-0" style="white-space: pre-wrap;">${sanitizedContent}</p>
-								<p class="text-muted" style="margin-top: 10px;">${blog.created_at}</p>
-							</div>
-						</div>
-					</section>
-					`;
-				}
-
-				async function displayBlogs() {
-					const blogs = await fetchBlogs();
-					const blogContainer = document.getElementById('blog-container');
-					
-					blogs.reverse();
-
-					blogs.forEach(blog => {
-						const blogSection = createBlogSection(blog);
-						blogContainer.innerHTML += blogSection;
-					});
-				}
-
-				displayBlogs();
-			</script>
 
 			<section id="contact" class="shadow-blue white-bg padding">
 				<h3 class="section-title" id="dark">Links</h3>
@@ -214,6 +153,7 @@
 	<script src="js/imagesloaded.min.js"></script>
 	<!-- Images normalization -->
 	<script src="js/custom.js"></script>
+    <script src="js/blogs.js"></script>
 	<!-- Web loading -->
 </body>
 
