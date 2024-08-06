@@ -1937,6 +1937,8 @@ a.button:active {
     transition: .15s
 }
 
+
+
 .checkbox-google input[type=checkbox] {
     display: block;
     width: 0;
@@ -1945,6 +1947,7 @@ a.button:active {
     z-index: -1;
     opacity: 0
 }
+
 
 .checkbox-google input[type=checkbox]:checked+.checkbox-google-switch {
     background: #9f9f9f
@@ -1958,11 +1961,6 @@ a.button:active {
 .checkbox-google input[type=checkbox]:not(:disabled)+.checkbox-google-switch {
     cursor: pointer;
     border-color: rgba(0, 0, 0, .3)
-}
-
-.checkbox-google input[type=checkbox]:not(:disabled):active+.checkbox-google-switch:before,
-.checkbox-google input[type=checkbox]:not(:disabled):focus+.checkbox-google-switch:before {
-    animation: checkbox-active-on .5s forwards linear
 }
 
 @keyframes checkbox-active-on {
@@ -2052,4 +2050,82 @@ img {
 
 .vjs-volume-panel.vjs-control.vjs-volume-panel-horizontal {
     display: none
+}
+
+
+/* ============================================================ */
+
+.checkbox-langswitch {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    margin-right: 10px;
+    position: relative;
+    vertical-align: middle;
+    font-size: 14px;
+    user-select: none
+}
+
+.checkbox-langswitch .checkbox-lang-switch {
+    display: inline-block;
+    width: 36px;
+    height: 14px;
+    border-radius: 20px;
+    position: relative;
+    top: 6px;
+    vertical-align: top;
+    background: #9f9f9f;
+    transition: .2s
+}
+
+.checkbox-langswitch .checkbox-lang-switch:before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -3px;
+    left: -1px;
+    background: #000;
+    border-radius: 50%;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    transition: .15s
+}
+
+.checkbox-langswitch input[type=checkbox] {
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    z-index: -1;
+    opacity: 0
+}
+
+.checkbox-langswitch input[type=checkbox]:not(:disabled):active+.checkbox-lang-switch:before,
+.checkbox-langswitch input[type=checkbox]:not(:disabled):focus+.checkbox-lang-switch:before {
+    animation: checkbox-active-on .5s forwards linear
+}
+
+.checkbox-langswitch input[type=checkbox]:checked+.checkbox-lang-switch {
+    background: #9f9f9f
+}
+
+.checkbox-langswitch input[type=checkbox]:checked+.checkbox-lang-switch:before {
+    background: #fff;
+    transform: translateX(18px)
+}
+
+.checkbox-langswitch input[type=checkbox]:not(:disabled)+.checkbox-lang-switch {
+    cursor: pointer;
+    border-color: rgba(0, 0, 0, .3)
+}
+
+.checkbox-langswitch input[type=checkbox]:not(:disabled):active+.checkbox-lang-switch:before,
+.checkbox-langswitch input[type=checkbox]:not(:disabled):focus+.checkbox-lang-switch:before {
+    animation: checkbox-active-on .5s forwards linear
+}
+
+.checkbox-langswitch input[type=checkbox]:not(:disabled):checked:active+.checkbox-lang-switch:before,
+.checkbox-langswitch input[type=checkbox]:not(:disabled):checked:focus+.checkbox-lang-switch:before {
+    animation: checkbox-active-off .5s forwards linear
 }

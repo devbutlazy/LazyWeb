@@ -46,8 +46,33 @@
 
 				<nav>
 					<ul class="vertical-menu scrollspy">
+						<!-- <li>
+							<div class="row" style="margin-top: 15px; margin-bottom: 5px;">
+								<div class="col text-center d-flex justify-content-xl-center">
+						
+									
+									<img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Flag_of_Ukraine.png"
+										class="d-xl-flex align-items-xl-center"
+										style="width: 30px; height: 20px; margin-right: 10px; margin-bottom: 10px; border-radius: 5px;"
+										alt="Ukraine Flag">
+
+									<div class="custom-control checkbox-cont"
+										style="padding-left: 0px; margin-bottom: 10px; padding-right: 10px;">
+										<label class="checkbox-langswitch" for="langSwitch">
+											<input class="custom-control-input" type="checkbox" id="langSwitch">
+											<span class="checkbox-lang-switch"></span>
+										</label>
+									</div>
+
+									<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/800px-Flag_of_the_United_States.png"
+										class="d-xl-flex align-items-xl-center"
+										style="width: 30px; height: 20px; margin-bottom: 10px; border-radius: 5px; margin-left: -10px;"
+										alt="USA Flag">
+								</div>
+							</div>
+						</li> -->
 						<li>
-							<div class="row" style="margin-top: 15px;">
+							<div class="row" style="margin-top: 0px;">
 								<div class="col text-center d-flex justify-content-xl-center">
 									<i class="fas fa-sun d-xl-flex align-items-xl-center"
 										style="font-size: 22px; margin-right: 10px; margin-bottom: 10px;"></i>
@@ -67,6 +92,7 @@
 								</div>
 							</div>
 						</li>
+						
 						<li><a href="#home" class="active"><i class="icon-home"></i>Home</a></li>
 						<li><a href="#about"><i class="icon-user"></i>About me</a></li>
                         <!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
@@ -324,7 +350,7 @@
 							url: 'http://127.0.0.1:8000/send_message',
 							data: formData,
 							success: function (response) {
-                                $('.messages').html('<div class="alert alert-success">Message semt!</div>');
+                                $('.messages').html('<div class="alert alert-success">Message sent!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
@@ -395,6 +421,7 @@
 	<!-- SCRIPTS <script data-cfasync="false" src="js/email-decode.min.js"></script>  -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/theme-switcher.js"></script>
+	<script src="js/lang-switcher.js	"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Boostrap -->
 	<script src="js/jquery.counterup.min.js"></script>
