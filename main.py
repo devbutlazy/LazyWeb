@@ -1,4 +1,6 @@
 import asyncio
+import threading
+import uvicorn
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -16,7 +18,6 @@ from routers.visits import router as visits_router
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     await create_tables()
-    await main()
     print("The app is starting up")
     yield
     print("The app is shutting down")
@@ -38,3 +39,8 @@ app.add_middleware(
 app.include_router(visits_router)
 app.include_router(message_router)
 app.include_router(blog_router)
+
+
+if __name__ == "__main__":
+    threading.Thread(target=lambda: asyncio.run(main())).start()
+    uvicorn.run(app, host="0.0.0.0", port=8000)
