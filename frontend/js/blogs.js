@@ -1,6 +1,6 @@
 async function fetchBlogs() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/get_blogs');
+        const response = await fetch('https://api.devbutlazy.xyz/get_blogs');
         const data = await response.json();
         return data.blogs;
     } catch (error) {
@@ -57,7 +57,7 @@ async function fetchReactions(blog_id) {
     const views = document.getElementById(`views-${blog_id}`);
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/get_reactions', {
+        const response = await fetch('https://api.devbutlazy.xyz/get_reactions', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ async function incrementViews(blog_id) {
     const views_count = views.innerText.split(':')[1].trim();
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/increment_views', {
+        const response = await fetch('https://api.devbutlazy.xyz/increment_views', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
