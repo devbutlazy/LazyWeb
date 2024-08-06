@@ -123,7 +123,7 @@ async def remove_post_handler(message: Message, command: CommandObject) -> None:
         return await message.answer("Post id not specified")  # type: ignore
 
     async with new_session() as session:
-        try:g
+        try:
             blog = await session.get(BlogsORM, id)
             await session.delete(blog)
             await session.flush()
