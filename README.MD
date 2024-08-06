@@ -37,12 +37,12 @@ sudo apt install docker.io docker-compose git
 ```
 `2` Clone this repo recursively
 ```
-git clone https://github.com/devbutlazy/lazy-website --recursive
+git clone https://github.com/devbutlazy/LazyWeb --recursive
 ```
 `3` Configure the .config.env file correctly (fill out the data)  
-`4` Build the docker
+`4` Build the docker-compose
 ```
-sudo docker build -t name_of_your_project .
+sudo docker-compose up -d --build
 ```
 `5` Use docker compose, to run it in the background
 ```
@@ -54,8 +54,8 @@ sudo docker-compose up -d
 # TODO:
 - [x] Visits counter using async db
 - [x] Send messages to telegram, using requests
-- [x] Connect ddrv to https://ddrv.devbutlazy.xyz/
-- [ ] Blogging system
-- [ ] Add authorisation for blogging system (only for admins)
+- [x] Connect DDRIVE (https://ddrv.devbutlazy.xyz/)
+- [x] Blogging system (https://blog.devbutlazy.xyz/)
+- [ ] Add language switching (UA-USA)
 
 ### License: GNU GPL 3.0 
