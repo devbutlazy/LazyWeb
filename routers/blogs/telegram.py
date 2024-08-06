@@ -161,6 +161,7 @@ async def posts_handler(message: Message):
 
 
 async def main():
+    print("Started telegram bot")
     bot = Bot(
         token=settings.BOT_TOKEN,
         default=DefaultBotProperties(parse_mode=ParseMode.HTML),
