@@ -123,8 +123,8 @@
 					<p class="mb-4"><b>Total visits: </b><span id="visitsCount"></span></p>
 					<!-- Display the visits count here -->
 					<script>
-						const url = 'http://127.0.0.1:8000/visits';
-						const increment_url = 'http://127.0.0.1:8000/increment_visits';
+						const url = 'https://api.devbutlazy.xyz/visits';
+						const increment_url = 'https://api.devbutlazy.xyz/increment_visits';
 
 						function formatNumber(num) {
 							if (num >= 1000000) {
@@ -347,7 +347,7 @@
 
 						$.ajax({
 							type: 'POST',
-							url: 'http://127.0.0.1:8000/send_message',
+							url: 'https://api.devbutlazy.xyz/send_message',
 							data: formData,
 							success: function (response) {
                                 $('.messages').html('<div class="alert alert-success">Message sent!</div>');
