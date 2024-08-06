@@ -42,5 +42,5 @@ app.include_router(blog_router)
 
 
 if __name__ == "__main__":
-    threading.Thread(target=lambda: asyncio.run(main())).start()
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    threading.Thread(target=lambda: uvicorn.run(app, host="0.0.0.0", port=8000)).start()
+    asyncio.run(main())
