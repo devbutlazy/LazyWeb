@@ -117,13 +117,13 @@ async def save_to_database(message: Message, data: Dict[str, Any]) -> None:
 
 @router.message(Command("remove_post"), IsAdmin())
 async def remove_post_handler(message: Message, command: CommandObject) -> None:
-    _id: str = command.args
+    id: str = command.args  # type: ignore
 
-    if not _id:
+    if not id:
         return await message.answer("Post id not specified")  # type: ignore
 
     async with new_session() as session:
-        try:
+        try:g
             blog = await session.get(BlogsORM, id)
             await session.delete(blog)
             await session.flush()
