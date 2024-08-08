@@ -15,6 +15,12 @@
 	<link rel="stylesheet" href="css/jquery.scrollbar.min.css" type="text/css" media="all">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
 	<link rel="stylesheet" href="css/theme-switcher.css" type="text/css" media="all">
+
+	<script>
+        window.config = {
+            API_BASE_URL: 'https://api.devbutlazy.xyz'
+        };
+    </script>
 </head>
 
 <body>
@@ -123,8 +129,8 @@
 					<p class="mb-4"><b>Total visits: </b><span id="visitsCount"></span></p>
 					<!-- Display the visits count here -->
 					<script>
-						const url = 'https://api.devbutlazy.xyz/visits';
-						const increment_url = 'https://api.devbutlazy.xyz/increment_visits';
+						const url = `${window.config.API_BASE_URL}/visits`;
+						const increment_url = `${window.config.API_BASE_URL}/increment_visits`;
 
 						function formatNumber(num) {
 							if (num >= 1000000) {
@@ -347,7 +353,7 @@
 
 						$.ajax({
 							type: 'POST',
-							url: 'https://api.devbutlazy.xyz/send_message',
+							url: `${window.config.API_BASE_URL}/send_message`,
 							data: formData,
 							success: function (response) {
                                 $('.messages').html('<div class="alert alert-success">Message sent!</div>');
@@ -432,6 +438,7 @@
 	<script src="js/imagesloaded.min.js"></script>
 	<!-- Images normalization -->
 	<script src="js/custom.js"></script>
+	<script src="js/config.js" type="module"></script>
 	<!-- Web loading -->
 </body>
 

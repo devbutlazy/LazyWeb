@@ -33,3 +33,20 @@ async def get_ip_location(ip: str) -> dict:
                 }
             else:
                 return {"error": "Could not retrieve location"}
+
+async def sum_location_info(request):
+    client_info = await get_client_ip(request)
+    user_ip = client_info["ip"]
+    location = client_info["location"]
+
+    if "error" in location:
+        location_info = f"IP: {user_ip}"
+    else:
+        country = location.get("country", "")
+        city = location.get("city", "")
+        region = location.get("region", "")
+        loc = location.get("loc", "")
+
+        location_info = f"IP: {user_ip}, Location: {country}, {city}, {region}, {loc}"
+
+    return location_info
