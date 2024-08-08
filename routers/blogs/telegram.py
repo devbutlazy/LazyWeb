@@ -117,7 +117,7 @@ async def save_to_database(message: Message, data: Dict[str, Any]) -> None:
 
 @router.message(Command("remove_post"), IsAdmin())
 async def remove_post_handler(message: Message, command: CommandObject) -> None:
-    id: str = command.args  # type: ignore
+    id: str = command.args
 
     if not id:
         return await message.answer("Post id not specified")  # type: ignore
@@ -135,7 +135,6 @@ async def remove_post_handler(message: Message, command: CommandObject) -> None:
                 blog.id = index + 1
 
             await session.commit()
-
         except (Exception, ExceptionGroup):
             return await message.answer("Post not found")  # type: ignore
 

@@ -18,7 +18,7 @@ function createBlogSection(blog) {
     if (blog.image_uri && blog.image_uri !== 'skip') {
         imageSection = `
         <div class="text-center" style="margin-top: 20px;">
-            <img src="${blog.image_uri}" alt="Blog Image" class="img-fluid rounded" style="border-radius: 10px;">
+            <img src="${blog.image_uri}" alt="Blog Image" class="img-fluid rounded" style="border-radius: 5px;">
         </div>`;
     }
 

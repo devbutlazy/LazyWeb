@@ -35,3 +35,14 @@ class BlogsORM(Base):
     created_at: Mapped[str]
 
     repr_cols_num = 3
+
+
+# class MessagesORM(Base):
+#     __tablename__ = "messages"
+
+#     id: Mapped[int] = mapped_column(primary_key=True)
+#     message: Mapped[str]
+#     user_ip: Mapped[str]
+#     saved_at: Mapped[str]
+
+#     repr_cols_num = 2
