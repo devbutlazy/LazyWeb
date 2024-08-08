@@ -26,15 +26,25 @@ async def send_message(
     user_ip = client_info["ip"]
     location = client_info["location"]
 
-    location_info = f"IP: {user_ip}, Location: {location}" if "error" not in location else f"IP: {user_ip}"
+    if "error" in location:
+        location_info = f"IP: {user_ip}"
+    else:
+        # Extract location details
+        country = location.get("country", "")
+        city = location.get("city", "")
+        region = location.get("region", "")
+        loc = location.get("loc", "")
+
+        # Format location details
+        location_info = f"IP: {user_ip}, Location: {country}, {city}, {region}, {loc}"
 
     async with aiohttp.ClientSession() as session:
         await session.get(
             f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage",
             params={
                 "chat_id": settings.TELEGRAM_CHAT_ID,
-                "text": f"‼️ Message from {name}\n\n{message}\n\{location_info}",
+                "text": f"‼️ Message from {name}\n\n{message}\n{location_info}",
             },
         )
 
-        return {"message": "Message sent"}
+    return {"message": "Message sent"}
