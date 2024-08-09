@@ -74,12 +74,14 @@ class CustomRateLimiter:
         period_start = now - self.period
         self.cleanup(key, period_start)
 
+        # Check if the number of requests is below the limit
         if len(self.requests[key]) < self.limit:
             self.requests[key].append(now)
             return True
         return False
 
     def cleanup(self, key: str, period_start: datetime):
+        # Remove any timestamps that are outside of the current period
         self.requests[key] = [
             timestamp for timestamp in self.requests[key] if timestamp > period_start
         ]

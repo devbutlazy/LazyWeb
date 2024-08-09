@@ -2,7 +2,6 @@ from datetime import timedelta
 
 import aiohttp
 from fastapi import Form, Request, APIRouter, HTTPException
-from slowapi.util import get_remote_address
 
 from database.config import settings
 from routers.misc import IPManipulator, CustomRateLimiter
@@ -21,7 +20,7 @@ async def send_message(
     :param message: message text
     :return: success message
     """
-    ip_address = get_remote_address(request)
+    ip_address = await IPManipulator(request).get_client_ip()["ip"]
     key = f"rate_limit:{ip_address}"
 
     if not await daily_limiter.is_allowed(key):
