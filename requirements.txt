@@ -7,4 +7,3 @@ aiohttp
 aiogram
 async-lru
 slowapi
-python-multipart

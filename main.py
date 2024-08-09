@@ -1,17 +1,16 @@
 import asyncio
 import threading
-import uvicorn
 from contextlib import asynccontextmanager
 
+import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from slowapi import _rate_limit_exceeded_handler
-from slowapi.errors import RateLimitExceeded
 
 from database.database import create_tables, drop_tables
-from routers.blogs.blogs import router as blog_router
 from routers.blogs.telegram import main
-from routers.contact import router as message_router, limiter
+
+from routers.blogs.blogs import router as blog_router
+from routers.contact import router as message_router
 from routers.visits import router as visits_router
 
 
@@ -24,9 +23,6 @@ async def lifespan(_: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None)
-
-app.state.limiter = limiter  # type: ignore
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)  # type: ignore
 
 app.add_middleware(
     CORSMiddleware,  # type: ignore

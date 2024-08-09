@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     DB_NAME: str  # Database name
     TELEGRAM_CHAT_ID: str  # Your and bot chat ID in telegram
     BOT_TOKEN: str  # Telegram bot token
+    BOT_ADMIN_ID: int  # Your ID
 
     model_config = SettingsConfigDict(env_file=".env")
 

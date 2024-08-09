@@ -60,12 +60,11 @@ async def process_image_handler(message: Message, state: FSMContext) -> None:
     await state.update_data(content=message.text)
     await state.set_state(Form.image_uri)
     await message.answer(
-        f"3/3 Enter image url.",
+        f'3/3 Enter image url. (Or enter "skip" to skip this step)',
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
                     KeyboardButton(text="Cancel"),
-                    KeyboardButton(text="Skip"),
                 ]
             ],
             resize_keyboard=True,
@@ -103,14 +102,14 @@ async def save_to_database(message: Message, data: Dict[str, Any]) -> None:
         blog = BlogsORM(
             title=title,
             content=content,
-            created_at=datetime.now().strftime("%Y/%m/%d %H:%M"),
-            image_uri=image_uri
+            created_at=datetime.now().strftime("%d/%m/%Y %H:%M"),
+            image_uri=image_uri,
         )
         session.add(blog)
         await session.commit()
 
     await message.answer(
-        text=f"<a href=\"{image_uri}\">🌐</a> <b>Post created</b>\n\n<b>Title:</b>{title}\n<b>Content:</b>\n<b>{content}</b>",
+        text=f'<a href="{image_uri}">🌐</a> <b>Post created</b>\n\n<b>Title:</b>{title}\n<b>Content:</b>\n<b>{content}</b>',
         reply_markup=ReplyKeyboardRemove(),
     )
 

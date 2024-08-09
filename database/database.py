@@ -40,7 +40,7 @@ async def drop_table_by_name(table_name: str) -> None:
     """
     async with engine.begin() as conn:
         table = Base.metadata.tables.get(table_name)
-        
+
         if table != None:
             await conn.run_sync(table.drop)
             print("Dropped table '%s'." % table_name)
