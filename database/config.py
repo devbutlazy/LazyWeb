@@ -7,7 +7,7 @@ class Settings(BaseSettings):
     BOT_TOKEN: str  # Telegram bot token
     BOT_ADMIN_ID: int  # Your ID
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=".config.env")
 
 
 settings = Settings()
