@@ -20,7 +20,7 @@ async def send_message(
     :param message: message text
     :return: success message
     """
-    ip_address = await IPManipulator(request).get_client_ip()["ip"]
+    ip_address = (await IPManipulator(request).get_client_ip())["ip"]
     key = f"rate_limit:{ip_address}"
 
     if not await daily_limiter.is_allowed(key):
