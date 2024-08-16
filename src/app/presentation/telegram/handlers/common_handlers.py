@@ -1,9 +1,9 @@
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
+from models.models import AdminFilter, Form
 
 from .. import router, reply_markup
-from ..misc import proccess_post
-from models.models import AdminFilter, Form
+from ....infrastructure.database.repositories.blog import BlogRepository
 
 
 @router.message(Form.title, AdminFilter())
@@ -54,4 +54,18 @@ async def handle_image(message: Message, state: FSMContext) -> None:
     data = await state.update_data(image_uri=message.text)
     await state.clear()
 
-    await proccess_post(message=message, data=data)
+    title: str = data.get("title", "N/A")
+    content: str = data.get("content", "N/A")
+    image_uri: str = data.get("image_uri", "N/A")
+
+    repository = BlogRepository()
+    if repository.add_one(title=title, content=content, image_uri=image_uri):
+        return await message.answer(
+            text=(
+                f'<a href="{image_uri}">🌐</a> <b>Post created</b>\n\n'
+                f"<b>Title:</b> {title}\n"
+                f"<b>Content:</b>\n{content}"
+            )
+        )
+
+    return await message.answer("An error occurred while adding a post")

@@ -1,13 +1,10 @@
 from aiogram.filters import Command, CommandObject
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, ReplyKeyboardRemove
-
-from sqlalchemy import select
+from models.models import AdminFilter, Form
 
 from .. import router, reply_markup
-from models.models import AdminFilter, Form
-from ....infrastructure.database import new_session
-from ....infrastructure.database.models.blog import BlogORM
+from ....infrastructure.database.repositories.blog import BlogRepository
 
 
 @router.message(Command("create_post"), AdminFilter())
@@ -41,29 +38,14 @@ async def remove_post_handler(message: Message, command: CommandObject) -> None:
     if not id_:
         return await message.answer("Post id not specified")  # type: ignore
 
-    async with new_session() as session:
-        try:
-            blog = await session.get(BlogORM, id_)
-            if blog:
-                await session.delete(blog)
-                await session.flush()
+    repository = BlogRepository()
+    if repository.remove_one(id=id_):
+        return await message.answer(
+            text=f"<b>Post with id {id_} removed</b>",
+            reply_markup=ReplyKeyboardRemove(),
+        )
 
-                result = await session.execute(select(BlogORM).order_by(BlogORM.id_))
-                blogs = result.scalars().all()
-
-                for index, blog in enumerate(blogs):
-                    blog.id = index + 1
-
-                await session.commit()
-            else:
-                raise Exception("Blog not found")
-        except Exception as e:
-            return await message.answer(f"An error occurred: {e}")  # type: ignore
-
-    await message.answer(
-        text=f"<b>Post with id {id_} removed</b>",
-        reply_markup=ReplyKeyboardRemove(),
-    )
+    return await message.answer(f"Blog with id {id_} not found")
 
 
 @router.message(Command("posts"), AdminFilter())
@@ -74,14 +56,15 @@ async def posts_handler(message: Message) -> None:
     :param message: The message object from the user interaction.
     :return: None
     """
-    async with new_session() as session:
-        blogs = (await session.execute(select(BlogORM))).scalars().all()
-        await message.answer(
-            text=(
-                f"<b>Posts:</b>\n"
-                + "\n".join([f"{blog.id} - {blog.title}" for blog in blogs])
-                if blogs
-                else "No posts"
-            ),
-            reply_markup=ReplyKeyboardRemove(),
-        )
+    repository = BlogRepository()
+    all_blogs = await repository.get_all()
+
+    await message.answer(
+        text=(
+            f"<b>Posts:</b>\n"
+            + "\n".join([f"{blog.id} - {blog.title}" for blog in all_blogs])
+            if all_blogs
+            else "No posts"
+        ),
+        reply_markup=ReplyKeyboardRemove(),
+    )
