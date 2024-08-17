@@ -1,5 +1,4 @@
 import asyncio
-from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,23 +12,7 @@ from uvicorn.server import Server
 
 from ..presentation.telegram.handlers.post_handlers import router as post_router
 from ..presentation.telegram.handlers.common_handlers import router as common_router
-from ..infrastructure.database import create_tables
 from .config.config import settings
-
-
-@asynccontextmanager
-async def lifespan(_: FastAPI):
-    await create_tables()
-    print("The app is starting up")
-    yield
-    print("The app is shutting down")
-
-
-def init_routers(app: FastAPI) -> None:
-    """
-    Include routers from the presentation layerCommandStart
-    """
-    ...
 
 
 async def start_telegram_bot() -> None:
@@ -45,8 +28,15 @@ async def start_telegram_bot() -> None:
     await dp.start_polling(bot)
 
 
+def init_routers(app: FastAPI) -> None:
+    """
+    Include routers from the presentation layerCommandStart
+    """
+    ...
+
+
 async def start_processes() -> None:
-    app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None)
+    app = FastAPI(docs_url=None, redoc_url=None)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
