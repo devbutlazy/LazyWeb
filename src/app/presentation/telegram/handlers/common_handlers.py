@@ -1,9 +1,14 @@
+from datetime import datetime
+
+from aiogram import Router
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
-from models.models import AdminFilter, Form
+from ..models.models import AdminFilter, Form
 
-from .. import router, reply_markup
+from .. import reply_markup
 from ....infrastructure.database.repositories.blog import BlogRepository
+
+router = Router()
 
 
 @router.message(Form.title, AdminFilter())
@@ -58,14 +63,21 @@ async def handle_image(message: Message, state: FSMContext) -> None:
     content: str = data.get("content", "N/A")
     image_uri: str = data.get("image_uri", "N/A")
 
-    repository = BlogRepository()
-    if repository.add_one(title=title, content=content, image_uri=image_uri):
-        return await message.answer(
-            text=(
-                f'<a href="{image_uri}">🌐</a> <b>Post created</b>\n\n'
-                f"<b>Title:</b> {title}\n"
-                f"<b>Content:</b>\n{content}"
+    async with BlogRepository() as repository:
+        if _ := (
+            await repository.add_one(
+                title=title,
+                content=content,
+                image_uri=image_uri,
+                created_at=datetime.now().strftime("%d/%m/%Y %H:%M"),
             )
-        )
+        ):
+            return await message.answer(
+                text=(
+                    f'<a href="{image_uri}">🌐</a> <b>Post created</b>\n\n'
+                    f"<b>Title:</b> {title}\n"
+                    f"<b>Content:</b>\n{content}"
+                )
+            )
 
-    return await message.answer("An error occurred while adding a post")
+        return await message.answer("An error occurred while adding a post")

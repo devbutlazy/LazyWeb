@@ -1,10 +1,17 @@
-from aiogram.filters import Command, CommandObject
+from aiogram import Router
+from aiogram.filters import Command, CommandObject, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, ReplyKeyboardRemove
-from models.models import AdminFilter, Form
+from ..models.models import AdminFilter, Form
 
-from .. import router, reply_markup
+from .. import reply_markup
 from ....infrastructure.database.repositories.blog import BlogRepository
+
+router = Router()
+
+@router.message(CommandStart())
+async def start_handler(message: Message) -> None:
+    await message.answer("Test.")
 
 
 @router.message(Command("create_post"), AdminFilter())
@@ -38,14 +45,14 @@ async def remove_post_handler(message: Message, command: CommandObject) -> None:
     if not id_:
         return await message.answer("Post id not specified")  # type: ignore
 
-    repository = BlogRepository()
-    if repository.remove_one(id=id_):
-        return await message.answer(
-            text=f"<b>Post with id {id_} removed</b>",
-            reply_markup=ReplyKeyboardRemove(),
-        )
+    async with BlogRepository() as repository:
+        if (await repository.remove_one(id=id_)):
+            return await message.answer(
+                text=f"<b>Post with id {id_} removed</b>",
+                reply_markup=ReplyKeyboardRemove(),
+            )
 
-    return await message.answer(f"Blog with id {id_} not found")
+        return await message.answer(f"Blog with id {id_} not found")
 
 
 @router.message(Command("posts"), AdminFilter())
@@ -56,15 +63,15 @@ async def posts_handler(message: Message) -> None:
     :param message: The message object from the user interaction.
     :return: None
     """
-    repository = BlogRepository()
-    all_blogs = await repository.get_all()
 
-    await message.answer(
-        text=(
-            f"<b>Posts:</b>\n"
-            + "\n".join([f"{blog.id} - {blog.title}" for blog in all_blogs])
-            if all_blogs
-            else "No posts"
-        ),
-        reply_markup=ReplyKeyboardRemove(),
-    )
+    async with BlogRepository() as repository:
+        all_blogs = await repository.get_all()
+        await message.answer(
+            text=(
+                f"<b>Posts:</b>\n"
+                + "\n".join([f"{blog.id} - {blog.title}" for blog in all_blogs])
+                if all_blogs
+                else "No posts"
+            ),
+            reply_markup=ReplyKeyboardRemove(),
+        )

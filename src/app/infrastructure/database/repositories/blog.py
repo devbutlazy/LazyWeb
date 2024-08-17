@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Self
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker
@@ -10,7 +10,15 @@ from ..models.blog import BlogORM
 
 class BlogRepository(BaseRepository):
     def __init__(self):
-        self.session: async_sessionmaker = async_sessionmaker(engine)
+        self.session: async_sessionmaker
+
+    async def __aenter__(self: Self) -> Self:
+        self.session = async_sessionmaker(engine)
+        return self
+
+    async def __aexit__(self, exc_type, exc_value, exc_tb) -> Self:  # noqa
+        await self.session().close()
+        # return self
 
     async def get_one(self, **kwargs) -> BlogORM:
         """
@@ -47,7 +55,7 @@ class BlogRepository(BaseRepository):
             raise ValueError("Blog id not specified")
 
         async with self.session() as session:
-            if blog := await session.get(BlogORM, id_):
+            if not (blog := await session.get(BlogORM, id_)):
                 return f"No blog with id {id_} found"
 
             await session.delete(blog)

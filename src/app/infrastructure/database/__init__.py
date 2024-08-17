@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 
 from ...main.config.config import settings
-from database.models.base import Base
+from ..database.models.base import Base
 
 engine = create_async_engine(
     f"sqlite+aiosqlite:///{settings.DB_NAME}.db",
