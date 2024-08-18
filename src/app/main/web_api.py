@@ -15,6 +15,9 @@ from uvicorn.server import Server
 from ..presentation.logger.logger import logger
 from ..presentation.telegram.handlers.post_handlers import router as post_router
 from ..presentation.telegram.handlers.common_handlers import router as common_router
+
+from ..presentation.web_api.routers.visit import router as visit_router
+from ..presentation.web_api.routers.blog import router as blog_router
 from .config.config import settings
 
 
@@ -22,8 +25,8 @@ def init_routers(app: FastAPI) -> None:
     """
     Include routers from the presentation layerCommandStart
     """
-    ...
-
+    app.include_router(visit_router)
+    app.include_router(blog_router)
 
 def handle_arguments(args: argparse.Namespace) -> None:
     """
@@ -80,9 +83,11 @@ async def start_processes() -> None:
         allow_headers=["*"],
     )
 
+
     config = Config(app=app, host="0.0.0.0", port=8000, loop="asyncio")
     server = Server(config=config)
 
+    init_routers(app)
     await asyncio.gather(start_telegram_bot(), server.serve())
 
 

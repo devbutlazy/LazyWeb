@@ -16,9 +16,8 @@ class BlogRepository(BaseRepository):
         self.session = async_sessionmaker(engine)
         return self
 
-    async def __aexit__(self, exc_type, exc_value, exc_tb) -> Self:  # noqa
-        await self.session().close()
-        # return self
+    async def __aexit__(self, exc_type, exc_value, exc_tb) -> None:  # noqa
+        return await self.session().close()
 
     async def get_one(self, **kwargs) -> BlogORM:
         """
@@ -39,10 +38,11 @@ class BlogRepository(BaseRepository):
         :return: BlogORM
         """
         async with self.session() as session:
-            if all_blogs := (await session.execute(select(BlogORM))).scalars().all():
+            
+            if all_blogs := ((await session.execute(select(BlogORM))).scalars().all()):
                 return all_blogs
 
-            return None
+            return []
 
     async def remove_one(self, **kwargs) -> ValueError | str:
         """
