@@ -10,4 +10,4 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 COPY src/app/main/config/.env ./src/app/main/config/
 
-CMD ["sh", "-c", "python -m src.app.main.web_api"]
+CMD ["sh", "-c", "python -m src.app.main.web_api --upgrade"]

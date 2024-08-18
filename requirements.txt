@@ -3,6 +3,7 @@ aiosqlite
 aiohttp
 aiogram
 async-lru
+loguru
 
 fastapi
 SQLAlchemy
