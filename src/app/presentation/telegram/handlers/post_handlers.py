@@ -9,6 +9,7 @@ from ....infrastructure.database.repositories.blog import BlogRepository
 
 router = Router()
 
+
 @router.message(CommandStart())
 async def start_handler(message: Message) -> None:
     await message.answer("Test.")
@@ -32,7 +33,7 @@ async def handle_create_post(message: Message, state: FSMContext) -> None:
 
 
 @router.message(Command("remove_post"), AdminFilter())
-async def remove_post_handler(message: Message, command: CommandObject) -> None:
+async def remove_post_handler(message: Message, command: CommandObject) -> Message:
     """
     Handle the removal of a blog post by ID.
 
@@ -46,7 +47,7 @@ async def remove_post_handler(message: Message, command: CommandObject) -> None:
         return await message.answer("Post id not specified")  # type: ignore
 
     async with BlogRepository() as repository:
-        if (await repository.remove_one(id=id_)):
+        if await repository.remove_one(id=id_):
             return await message.answer(
                 text=f"<b>Post with id {id_} removed</b>",
                 reply_markup=ReplyKeyboardRemove(),

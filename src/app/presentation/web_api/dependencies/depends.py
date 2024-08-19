@@ -1,7 +1,4 @@
-from typing import Type, AsyncGenerator
-
-from aiohttp import ClientSession
-from fastapi import Depends
+from typing import AsyncGenerator
 
 from ....infrastructure.database.repositories.blog import BlogRepository
 from ....infrastructure.database.repositories.visit import VisitRepository

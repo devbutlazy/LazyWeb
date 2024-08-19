@@ -9,6 +9,7 @@ fastapi
 SQLAlchemy
 uvicorn
 
+pydantic
 pydantic-settings
 python-multipart
 black

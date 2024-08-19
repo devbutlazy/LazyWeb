@@ -3,7 +3,7 @@ from typing import Self, Dict, Any
 from datetime import timedelta
 
 from aiohttp import ClientSession
-from fastapi import Request, HTTPException, Depends
+from fastapi import Request, HTTPException
 
 from ....main.config.config import settings
 from ....presentation.web_api.services.cooldown import CustomRateLimiter

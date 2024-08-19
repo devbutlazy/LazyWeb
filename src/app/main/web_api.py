@@ -1,26 +1,23 @@
-import asyncio
 import argparse
+import asyncio
 import subprocess
-
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
 from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from uvicorn.config import Config
 from uvicorn.server import Server
 
 from .config.config import settings
 from ..presentation.logger.logger import logger
-from ..presentation.telegram.handlers.post_handlers import router as post_router
 from ..presentation.telegram.handlers.common_handlers import router as common_router
+from ..presentation.telegram.handlers.post_handlers import router as post_router
 
-from ..presentation.web_api.routers.visit import router as visit_router
 from ..presentation.web_api.routers.blog import router as blog_router
 from ..presentation.web_api.routers.message import router as message_router
-
+from ..presentation.web_api.routers.visit import router as visit_router
 
 
 def init_routers(app: FastAPI) -> None:
@@ -30,6 +27,7 @@ def init_routers(app: FastAPI) -> None:
     app.include_router(visit_router)
     app.include_router(blog_router)
     app.include_router(message_router)
+
 
 def handle_arguments(args: argparse.Namespace) -> None:
     """
@@ -79,13 +77,12 @@ async def start_processes() -> None:
     """
     app = FastAPI(docs_url=None, redoc_url=None)
     app.add_middleware(
-        CORSMiddleware,
+        CORSMiddleware,  # type: ignore
         allow_origins=["*"],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
-
 
     config = Config(app=app, host="0.0.0.0", port=8000, loop="asyncio")
     server = Server(config=config)

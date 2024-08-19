@@ -2,12 +2,8 @@ $(window).on("load", function () {
     "use strict";
     $("#preloader").delay(350).fadeOut("slow");
     $(".header-inner").mCustomScrollbar();
-    $(".portfolio-filter").on("click", "li", function () {
-        var filterValue = $(this).attr("data-filter");
-        $container.isotope({ filter: filterValue });
-    });
     $(".portfolio-filter").each(function (i, buttonGroup) {
-        var $buttonGroup = $(buttonGroup);
+        const $buttonGroup = $(buttonGroup);
         $buttonGroup.on("click", "li", function () {
             $buttonGroup.find(".current").removeClass("current");
             $(this).addClass("current");

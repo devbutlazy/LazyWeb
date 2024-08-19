@@ -65,7 +65,7 @@ class IPAddressHandler:
         user_ip = client_info["ip"]
         location = client_info["location"]
 
-        if "error" in location:
+        if (not isinstance(location, dict)) and ("error" in location):
             return f"IP: {user_ip}"
 
         country = location.get("country", "")

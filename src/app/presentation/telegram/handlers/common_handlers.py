@@ -48,7 +48,7 @@ async def handle_content(message: Message, state: FSMContext) -> None:
 
 
 @router.message(Form.image_uri, AdminFilter())
-async def handle_image(message: Message, state: FSMContext) -> None:
+async def handle_image(message: Message, state: FSMContext) -> Message:
     """
     Process the image URI of the post. Saves the post to the database.
 

@@ -1,4 +1,4 @@
-from typing import Optional, Self
+from typing import Self, Type, Any, Sequence
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker
@@ -19,7 +19,7 @@ class BlogRepository(BaseRepository):
     async def __aexit__(self, exc_type, exc_value, exc_tb) -> None:  # noqa
         return await self.session().close()
 
-    async def get_one(self, **kwargs) -> BlogORM:
+    async def get_one(self, **kwargs) -> Type[BlogORM] | None:
         """
         Get blog by it's id
         :param kwargs: id
@@ -32,7 +32,7 @@ class BlogRepository(BaseRepository):
         async with self.session() as session:
             return await session.get(BlogORM, id_)
 
-    async def get_all(self) -> Optional[BlogORM]:
+    async def get_all(self) -> Sequence[BlogORM] | list[Any]:
         """
         Get all blogs
         :return: BlogORM
