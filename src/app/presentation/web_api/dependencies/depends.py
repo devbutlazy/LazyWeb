@@ -24,7 +24,7 @@ async def get_visit_repository() -> AsyncGenerator[VisitRepository, None]:
         yield repository
 
 
-async def get_message_repository() -> AsyncGenerator[VisitRepository, None]:
+async def get_message_repository() -> AsyncGenerator[MessageRepository, None]:
     """
     Returns an instance of VisitRepository
     """

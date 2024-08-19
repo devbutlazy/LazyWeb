@@ -1,15 +1,9 @@
 from fastapi import APIRouter, Request, Depends
-from pydantic import BaseModel
 
-from ....infrastructure.database.repositories.message import MessageRepository
+from ..schemas.schemas import MessageForm
 from ..dependencies.depends import get_message_repository
 
 router = APIRouter()
-
-
-class MessageForm(BaseModel):
-    name: str
-    message: str
 
 
 @router.post("/send_message")

@@ -77,7 +77,7 @@ async def start_processes() -> None:
 
     :return: None
     """
-    app = FastAPI()#docs_url=None, redoc_url=None)
+    app = FastAPI(docs_url=None, redoc_url=None)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
