@@ -23,6 +23,9 @@ from ..presentation.web_api.routers.visit import router as visit_router
 def init_routers(app: FastAPI) -> None:
     """
     Include routers from the presentation layerCommandStart
+
+    :param app: The FastAPI application.
+    :return: None
     """
     app.include_router(visit_router)
     app.include_router(blog_router)

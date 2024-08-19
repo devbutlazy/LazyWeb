@@ -275,7 +275,6 @@ header.left button.close {
     padding: 0;
     background-color: #fff;
     border: 0;
-    -webkit-appearance: none;
     opacity: 1;
     color: #000;
     font-weight: 400;
