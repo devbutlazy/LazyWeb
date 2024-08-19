@@ -1,61 +1,58 @@
-# LazyDev Website 
-## Website written by lazy developer, using Python (Backend Fastapi), HTML + CSS + JS (Frontend)
+# LazyWeb // devbutlazy
 
-## DEMO: https://devbutlazy.xyz
+![image](https://github.com/user-attachments/assets/9501a332-293e-4da6-9b8e-bfb2e9b8e31b)
 
-## Manual:
-`1` Download python from [python.org](https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe)  
-`2` Install git from [git-scm.com](https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe)  
-`3` Clone this repository and [DDRV](https://github.com/forscht/ddrive) (using --recursive)
+## Instalation guide(with Docker):
+`1` Download and install Python from [python.org](https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe)  
+`2` Download and install git from [git-scm.com](https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe)  
+`3` Download and install docker:  
 ```
-git clone https://github.com/devbutlazy/lazy-website --recursive
+- Ubuntu:
+[1] sudo apt install docker.io
+[2] sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose
+[3] sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+[4] sudo chmod +x /usr/bin/docker-compose
+[5] systemctl enable docker
+[6] systemctl start docker
+
+- Windows:
+[1] Download and install docker from https://www.docker.com/products/docker-desktop/
+[2] Read the docs installation guide: https://docs.docker.com/desktop/install/windows-install/
 ```
-`4` Go to `cmd.exe`, `cd PROJECT_PATH` and `pip install -r requirements.txt` to install required packages   
-`5` Enter the valid config to .config.env, to correctly run the website backend    
-`6` Edit the `index.html` and other files according to you and your information (because you are not me 😊)   
-`7` Run the backend using uvicorn 
-```
-uvicorn main:app --port 8000 --reload
-```
-`8` When the console has printed "The app is starting up", open the `index.html` file, and the website is done. 
-
-`+` Manually run the DDRV using docker as in their [README tutorial](https://github.com/forscht/ddrive/blob/4.x/README.md)
-
-
-# What is in the backend?
-
-    - Global visits counter. 
-      When someone visits site, it adds +1 to the counter. 
-      It also stores it in a sqlite database, so after restart the counter will remain.
-    - Sending messages to telegram using requests.
-
-# Deploy with Docker on a VPS (ubuntu)
-
-`1` Install docker.io, docker-compose, git
-```
-sudo apt install docker.io docker-compose git
-```
-`2` Clone this repo recursively
+`4` Clone this repository and [DDrive](https://github.com/forscht/ddrive) (using --recursive)
 ```
 git clone https://github.com/devbutlazy/LazyWeb --recursive
 ```
-`3` Configure the .config.env file correctly (fill out the data)  
-`4` Build the docker-compose
+`5` Create `.env` file in `src/app/main/config/` and fill out the environmental variables in it:  
 ```
-sudo docker-compose up -d --build
+DB_NAME=database
+TELEGRAM_CHAT_ID=
+BOT_TOKEN=
+BOT_ADMIN_ID=
 ```
-`5` Use docker compose, to run it in the background
+`6` Edit the `index.html` and images according to you  
+`7` Build the docker-compose
 ```
-sudo docker-compose up -d
+sudo docker-compose up -d --build (linux)
+```
+`8` Run docker-compose in the background
+```
+sudo docker-compose up -d (linux)
 ```
 
-### That's it, now web runs on https://0.0.0.0:8000. You can use nginx or other staff to redirect it to normal uri.
- 
-# TODO:
-- [x] Visits counter using async db
-- [x] Send messages to telegram, using requests
-- [x] Connect DDRIVE (https://ddrv.devbutlazy.xyz/)
+`9` Manually run the DDrive using Docker manual from [README tutorial](https://github.com/forscht/ddrive/blob/4.x/README.md)
+
+
+## After completing the guide, your website should run on http://localhost:8000 
+
+
+### TODO:
+- [x] Follow the SOLID, DRY and Clean-Architecture rules
+- [x] Visits counter on main page 
+- [x] Send messages to telegram through website
+- [x] Connect DDrive (https://ddrv.devbutlazy.xyz/)
 - [x] Blogging system (https://blog.devbutlazy.xyz/)
-- [ ] Add language switching (UA-USA)
 
-### License: GNU GPL 3.0 
+## Feel free to open [issues](https://github.com/devbutlazy/LazyWeb/issues) or [pull requests](https://github.com/devbutlazy/LazyWeb/pulls) if you have encountered any kind of problems.
+
+### (c) LazyWeb License: MIT-LICENSE
