@@ -54,32 +54,6 @@ async function displayBlogs() {
     });
 }
 
-async function fetchReactions(blog_id) {
-    const like_button = document.getElementById(`like-button-${blog_id}`);
-    const views = document.getElementById(`views-${blog_id}`);
-
-    try {
-        const response = await fetch(`${API_BASE_URL}/get_reactions`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ blog_id })
-        });
-        const data = await response.json();
-
-        like_button.innerText = `👍: ${data.likes}`;
-        views.innerText = `👁️: ${data.views}`;
-
-    } catch (error) {
-        console.error('Error fetching reactions:', error);
-    }
-}
-
-async function incrementViews(blog_id) {
-    const views = document.getElementById(`views-${blog_id}`);
-    const views_count = views.innerText.split(':')[1].trim();
-
     try {
         const response = await fetch(`${API_BASE_URL}/increment_views`, {
             method: 'POST',
@@ -90,10 +64,11 @@ async function incrementViews(blog_id) {
         });
         const data = await response.json();
         console.log(data);
-        updateReactions(data, blog_id);
     } catch (error) {
         console.error(error);
-    }
+
 }
 
-displayBlogs();
+displayBlogs().then(() => {
+    console.log('Blogs displayed successfully');
+});

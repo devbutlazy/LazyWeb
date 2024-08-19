@@ -17,10 +17,10 @@
 	<link rel="stylesheet" href="css/theme-switcher.css" type="text/css" media="all">
 
 	<script>
-        window.config = {
-            API_BASE_URL: 'https://api.devbutlazy.xyz'
-        };
-    </script>
+		window.config = {
+			API_BASE_URL: 'https://api.devbutlazy.xyz',
+		};
+	</script>
 </head>
 
 <body>
@@ -48,44 +48,19 @@
 			</button>
 
 			<div class="header-inner d-flex align-items-start flex-column">
-				<a href="/"><img src="images/main-logo.png" alt="icon" height="128px" width="128px"></a>
+				<a href="/"><img src="images/main-logo.png" alt="icon"></a>
 
 				<nav>
 					<ul class="vertical-menu scrollspy">
-						<!-- <li>
-							<div class="row" style="margin-top: 15px; margin-bottom: 5px;">
-								<div class="col text-center d-flex justify-content-xl-center">
-						
-									
-									<img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Flag_of_Ukraine.png"
-										class="d-xl-flex align-items-xl-center"
-										style="width: 30px; height: 20px; margin-right: 10px; margin-bottom: 10px; border-radius: 5px;"
-										alt="Ukraine Flag">
-
-									<div class="custom-control checkbox-cont"
-										style="padding-left: 0px; margin-bottom: 10px; padding-right: 10px;">
-										<label class="checkbox-langswitch" for="langSwitch">
-											<input class="custom-control-input" type="checkbox" id="langSwitch">
-											<span class="checkbox-lang-switch"></span>
-										</label>
-									</div>
-
-									<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_the_United_States.png/800px-Flag_of_the_United_States.png"
-										class="d-xl-flex align-items-xl-center"
-										style="width: 30px; height: 20px; margin-bottom: 10px; border-radius: 5px; margin-left: -10px;"
-										alt="USA Flag">
-								</div>
-							</div>
-						</li> -->
 						<li>
-							<div class="row" style="margin-top: 0px;">
+							<div class="row" style="margin-top: 0;">
 								<div class="col text-center d-flex justify-content-xl-center">
 									<i class="fas fa-sun d-xl-flex align-items-xl-center"
 										style="font-size: 22px; margin-right: 10px; margin-bottom: 10px;"></i>
 									<!-- Sun -->
 
 									<div class="custom-control checkbox-cont"
-										style="padding-left: 0px; margin-bottom: 10px;">
+										 style="padding-left: 0; margin-bottom: 10px;">
 										<label class="checkbox-google" for="darkSwitch">
 											<input class="custom-control-input" type="checkbox" id="darkSwitch">
 											<span class="checkbox-google-switch"></span>
@@ -98,12 +73,12 @@
 								</div>
 							</div>
 						</li>
-						
+
 						<li><a href="#home" class="active"><i class="icon-home"></i>Home</a></li>
 						<li><a href="#about"><i class="icon-user"></i>About me</a></li>
-                        <!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
+						<!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
 						<li><a href="https://ddrv.devbutlazy.xyz" target="blank"><i class="icon-folder"></i>DDRV</a>
-                        <li><a href="https://blog.devbutlazy.xyz" target="blank"><i class="icon-puzzle"></i>Blog</a>
+						<li><a href="https://blog.devbutlazy.xyz" target="blank"><i class="icon-puzzle"></i>Blog</a>
 						</li>
 					</ul>
 				</nav>
@@ -122,14 +97,14 @@
 
 		<main class="content float-right">
 			<section class="hero background parallax shadow-dark d-flex align-items-center" id="home"
-				src="images\logonofone_900.png" height="128px" width="128px">
+					 src="images\logonofone_900.png">
 				<div class="cta mx-auto mt-2">
 					<h1 class="mt-0 mb-4">LazyDev<span class="dot"></span></h1>
 					<p class="mb-4">Explore detailed information about me and my work on this website.</p>
 					<p class="mb-4"><b>Total visits: </b><span id="visitsCount"></span></p>
 					<!-- Display the visits count here -->
 					<script>
-						const url = `${window.config.API_BASE_URL}/visits`;
+						const url = `${window.config.API_BASE_URL}/get_visits`;
 						const increment_url = `${window.config.API_BASE_URL}/increment_visits`;
 
 						function formatNumber(num) {
@@ -172,7 +147,7 @@
 				<div class="spacer" data-height="40"></div>
 				<div class="row">
 					<div class="col-md-3">
-						<img loading="lazy" src="images/test.jpg" style="border-radius: 20px; " alt="about">
+						<img alt="about" loading="lazy" src="images/lazy_avatar.jpg" style="border-radius: 20px; ">
 					</div>
 					<div class="col-md-9">
 						<h2 id="dark" class="mt-4 mt-md-0 mb-4">Sup,</h2>
@@ -192,28 +167,13 @@
 				<h3 class="section-title" id="dark">Done Projects</h3>
 				<div class="spacer" data-height="40"></div>
 
-				<ul class="portfolio-filter list-inline">
-					<li class="current list-inline-item" data-filter="*">All</li>
-					<li class="list-inline-item" data-filter=".python">Python</li>
-					<li class="list-inline-item" data-filter=".other">Other</li>
-				</ul>
-
-				<div class="pf-filter-wrapper mb-4">
-					<select class="select-css portfolio-filter-mobile">
-						<option value="*">All</option>
-						<option value=".python">Python</option>
-						<option value=".other">Other</option>
-					</select>
-				</div>
 				<div class="row portfolio-wrapper">
-
-					<div class="col-md-4 col-sm-6 grid-item python">
+					<div class="col-md-4 col-sm-6 grid-item">
 						<a target="_blank" href="https://github.com/devbutlazy/GTokenChecker">
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title" id="dark">GTokenChecker</h4>
-									<span class="term">One of the fastest and most productive tool worldwide for
-										validating Discord tokens and getting information about them.</span>
+									<span class="term">One of the fastest and most productive tools worldwide for validating Discord tokens and getting information about them.</span>
 								</div>
 								<div class="thumb">
 									<img loading="lazy" src="images/gtokenchecker.png" alt="GTokenChecker">
@@ -223,7 +183,7 @@
 						</a>
 					</div>
 
-					<div class="col-md-4 col-sm-6 grid-item other">
+					<div class="col-md-4 col-sm-6 grid-item">
 						<a target="_blank" href="https://github.com/devbutlazy/lazy-website">
 							<div class="portfolio-item">
 								<div class="details">
@@ -238,13 +198,12 @@
 						</a>
 					</div>
 
-					<div class="col-md-4 col-sm-6 grid-item python">
+					<div class="col-md-4 col-sm-6 grid-item">
 						<a target="_blank" href="https://github.com/devbutlazy/DiscoDance">
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title" id="dark">DiscoDance</h4>
-									<span class="term">A Discord music bot with user-friendly buttons for easy
-										control.</span>
+									<span class="term">A Discord music bot with user-friendly buttons for easy control.</span>
 								</div>
 								<div class="thumb">
 									<img loading="lazy" src="images/discodance.png" alt="ruina counter">
@@ -254,32 +213,28 @@
 						</a>
 					</div>
 
-					<div class="col-md-4 col-sm-6 grid-item python">
+					<div class="col-md-4 col-sm-6 grid-item">
 						<a target="_blank" href="https://github.com/devbutlazy/Telegram-OLX-Wrapper">
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title">Telegram OLX Wrapper</h4>
-									<span class="term">A Telegram bot for automatic searching of new ads using website
-										scraping. Unfortunately, the project didn't launch due to issues with the
-										premium system.</span>
+									<span class="term">A Telegram bot for automatic searching of new ads using website scraping. Unfortunately, the project didn't launch due to issues with the premium system.</span>
 								</div>
 								<div class="thumb">
-									<img loafing="lazy" src="images/olxwrapper.png" alt="olxwrapper">
+									<img loading="lazy" src="images/olxwrapper.png" alt="olxwrapper">
 									<div class="mask"></div>
 								</div>
 							</div>
 						</a>
 					</div>
 
-					<div class="col-md-4 col-sm-6 grid-item python">
+					<div class="col-md-4 col-sm-6 grid-item">
 						<a target="_blank" href="https://github.com/devbutlazy/blum-auto-clicker">
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title">Blum Auto-Clicker</h4>
-									<span class="term">Software for automatic points collection in Blum telegram bot,
-										using numpy and pyautogui.</span>
+									<span class="term">Software for automatic points collection in Blum telegram bot, using numpy and pyautogui.</span>
 								</div>
-
 								<div class="thumb">
 									<img loading="lazy" src="images/blumai.png" alt="Portfolio-title">
 									<div class="mask"></div>
@@ -288,14 +243,13 @@
 						</a>
 					</div>
 
-					<div class="col-md-4 col-sm-6 grid-item other">
+					<div class="col-md-4 col-sm-6 grid-item">
 						<a target="_blank" href="https://github.com/devbutlazy/LazyTweaker">
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title">LazyTweaker</h4>
-									<span class="term">Windows 11 mini-tweaker written on C++, just for practice.</span>
+									<span class="term">Windows 11 mini-tweaker written in C++, just for practice.</span>
 								</div>
-
 								<div class="thumb">
 									<img loading="lazy" src="images/lazytweaker.png" alt="Portfolio-title">
 									<div class="mask"></div>
@@ -305,6 +259,7 @@
 					</div>
 				</div>
 			</section>
+
 
 			<section id="user-input" class="shadow-blue white-bg padding">
 				<h3 class="section-title" id="dark">Send a message</h3>
@@ -341,12 +296,12 @@
 				</div>
 			</section>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<script>
 				$(document).ready(function () {
 					$('#contact-form').submit(function (event) {
 						event.preventDefault(); // Prevent default form submission
-						var formData = {
+						const formData = {
 							name: $('#form_name').val(),
 							message: $('#form_message').val()
 						};
@@ -354,9 +309,12 @@
 						$.ajax({
 							type: 'POST',
 							url: `${window.config.API_BASE_URL}/send_message`,
-							data: formData,
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							data: JSON.stringify(formData),
 							success: function (response) {
-                                $('.messages').html('<div class="alert alert-success">Message sent!</div>');
+								$('.messages').html('<div class="alert alert-success">Message sent!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
@@ -365,18 +323,19 @@
 								$('#form_message').val('');
 							},
 							error: function (error) {
-                                $('.messages').html('<div class="alert alert-danger">Cooldown, please try again later!</div>');
+								$('.messages').html('<div class="alert alert-danger">Cooldown, please try again later!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
 							}
 						});
+
 					});
 				});
 			</script>
 
 
-            <section class="shadow-blue white-bg padding" id="contact">
+			<section class="shadow-blue white-bg padding" id="contact">
 				<h3 class="section-title" id="dark">Links</h3>
 				<div class="spacer" data-height="40"></div>
 				<div class="row">
@@ -427,7 +386,6 @@
 	<!-- SCRIPTS <script data-cfasync="false" src="js/email-decode.min.js"></script>  -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="js/theme-switcher.js"></script>
-	<script src="js/lang-switcher.js	"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Boostrap -->
 	<script src="js/jquery.counterup.min.js"></script>
@@ -438,7 +396,6 @@
 	<script src="js/imagesloaded.min.js"></script>
 	<!-- Images normalization -->
 	<script src="js/custom.js"></script>
-	<script src="js/config.js" type="module"></script>
 	<!-- Web loading -->
 </body>
 
