@@ -11,10 +11,11 @@ from ....presentation.web_api.services.ip_handler import IPAddressHandler
 
 
 class MessageRepository:
+    daily_limiter = CustomRateLimiter(limit=2, period=timedelta(days=1))
+
     def __init__(self):
         self.url = f"https://api.telegram.org/bot{settings.BOT_TOKEN}/sendMessage"
         self.session: ClientSession = ClientSession()
-        self.daily_limiter = CustomRateLimiter(limit=2, period=timedelta(days=1))
 
     async def __aenter__(self) -> Self:
         return self
@@ -29,7 +30,7 @@ class MessageRepository:
         ip_address = (await ip_handler.get_client_ip())["ip"]
         key = f"rate_limit:{ip_address}"
 
-        if not await self.daily_limiter.is_allowed(key):
+        if not await MessageRepository.daily_limiter.is_allowed(key):
             raise HTTPException(
                 status_code=429, detail="Rate limit exceeded. Try again tomorrow."
             )
