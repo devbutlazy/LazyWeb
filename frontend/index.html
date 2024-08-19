@@ -17,10 +17,10 @@
 	<link rel="stylesheet" href="css/theme-switcher.css" type="text/css" media="all">
 
 	<script>
-        window.config = {
-            API_BASE_URL: 'https://api.devbutlazy.xyz'
-        };
-    </script>
+		window.config = {
+			API_BASE_URL: 'http://localhost:8000',
+		};
+	</script>
 </head>
 
 <body>
@@ -73,12 +73,12 @@
 								</div>
 							</div>
 						</li>
-						
+
 						<li><a href="#home" class="active"><i class="icon-home"></i>Home</a></li>
 						<li><a href="#about"><i class="icon-user"></i>About me</a></li>
-                        <!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
+						<!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
 						<li><a href="https://ddrv.devbutlazy.xyz" target="blank"><i class="icon-folder"></i>DDRV</a>
-                        <li><a href="https://blog.devbutlazy.xyz" target="blank"><i class="icon-puzzle"></i>Blog</a>
+						<li><a href="https://blog.devbutlazy.xyz" target="blank"><i class="icon-puzzle"></i>Blog</a>
 						</li>
 					</ul>
 				</nav>
@@ -104,7 +104,7 @@
 					<p class="mb-4"><b>Total visits: </b><span id="visitsCount"></span></p>
 					<!-- Display the visits count here -->
 					<script>
-						const url = `${window.config.API_BASE_URL}/visits`;
+						const url = `${window.config.API_BASE_URL}/get_visits`;
 						const increment_url = `${window.config.API_BASE_URL}/increment_visits`;
 
 						function formatNumber(num) {
@@ -147,7 +147,7 @@
 				<div class="spacer" data-height="40"></div>
 				<div class="row">
 					<div class="col-md-3">
-                        <img alt="about" loading="lazy" src="images/lazy_avatar.jpg" style="border-radius: 20px; ">
+						<img alt="about" loading="lazy" src="images/lazy_avatar.jpg" style="border-radius: 20px; ">
 					</div>
 					<div class="col-md-9">
 						<h2 id="dark" class="mt-4 mt-md-0 mb-4">Sup,</h2>
@@ -316,7 +316,7 @@
 				</div>
 			</section>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<script>
 				$(document).ready(function () {
 					$('#contact-form').submit(function (event) {
@@ -329,9 +329,12 @@
 						$.ajax({
 							type: 'POST',
 							url: `${window.config.API_BASE_URL}/send_message`,
-							data: formData,
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							data: JSON.stringify(formData),
 							success: function (response) {
-                                $('.messages').html('<div class="alert alert-success">Message sent!</div>');
+								$('.messages').html('<div class="alert alert-success">Message sent!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
@@ -340,18 +343,19 @@
 								$('#form_message').val('');
 							},
 							error: function (error) {
-                                $('.messages').html('<div class="alert alert-danger">Cooldown, please try again later!</div>');
+								$('.messages').html('<div class="alert alert-danger">Cooldown, please try again later!</div>');
 								setTimeout(function () {
 									$('.messages').empty();
 								}, 5000);
 							}
 						});
+
 					});
 				});
 			</script>
 
 
-            <section class="shadow-blue white-bg padding" id="contact">
+			<section class="shadow-blue white-bg padding" id="contact">
 				<h3 class="section-title" id="dark">Links</h3>
 				<div class="spacer" data-height="40"></div>
 				<div class="row">

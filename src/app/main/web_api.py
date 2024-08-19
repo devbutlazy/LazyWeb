@@ -12,13 +12,15 @@ from aiogram.enums import ParseMode
 from uvicorn.config import Config
 from uvicorn.server import Server
 
+from .config.config import settings
 from ..presentation.logger.logger import logger
 from ..presentation.telegram.handlers.post_handlers import router as post_router
 from ..presentation.telegram.handlers.common_handlers import router as common_router
 
 from ..presentation.web_api.routers.visit import router as visit_router
 from ..presentation.web_api.routers.blog import router as blog_router
-from .config.config import settings
+from ..presentation.web_api.routers.message import router as message_router
+
 
 
 def init_routers(app: FastAPI) -> None:
@@ -27,6 +29,7 @@ def init_routers(app: FastAPI) -> None:
     """
     app.include_router(visit_router)
     app.include_router(blog_router)
+    app.include_router(message_router)
 
 def handle_arguments(args: argparse.Namespace) -> None:
     """
@@ -74,7 +77,7 @@ async def start_processes() -> None:
 
     :return: None
     """
-    app = FastAPI(docs_url=None, redoc_url=None)
+    app = FastAPI()#docs_url=None, redoc_url=None)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],

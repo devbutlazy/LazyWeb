@@ -38,8 +38,7 @@ class BlogRepository(BaseRepository):
         :return: BlogORM
         """
         async with self.session() as session:
-            
-            if all_blogs := ((await session.execute(select(BlogORM))).scalars().all()):
+            if all_blogs := (await session.execute(select(BlogORM))).scalars().all():
                 return all_blogs
 
             return []
