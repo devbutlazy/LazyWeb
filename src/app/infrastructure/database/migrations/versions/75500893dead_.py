@@ -32,7 +32,7 @@ def upgrade() -> None:
     )
     op.create_table(
         "visits",
-        sa.Column("id", sa.Integer(), nullable=False),
+        sa.Column("id", sa.Integer(), nullable=False, server_default=0),
         sa.Column("counter", sa.Integer(), nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
