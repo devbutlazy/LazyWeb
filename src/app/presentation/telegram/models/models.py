@@ -2,7 +2,7 @@ from aiogram.filters import BaseFilter
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message
 
-from ....main.config.config import settings
+from app.main.config.config import settings
 
 
 class Form(StatesGroup):

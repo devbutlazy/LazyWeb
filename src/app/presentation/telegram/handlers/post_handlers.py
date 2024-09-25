@@ -2,10 +2,10 @@ from aiogram import Router
 from aiogram.filters import Command, CommandObject, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, ReplyKeyboardRemove
-from ..models.models import AdminFilter, Form
 
-from .. import reply_markup
-from ....infrastructure.database.repositories.blog import BlogRepository
+from app.presentation.telegram.models.models import AdminFilter, Form
+from app.presentation.telegram import reply_markup
+from app.infrastructure.database.repositories.blog import BlogRepository
 
 router = Router()
 

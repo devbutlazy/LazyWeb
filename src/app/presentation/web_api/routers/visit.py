@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 
-from ....infrastructure.database.repositories.visit import VisitRepository
-from ..dependencies.depends import get_visit_repository
+from app.infrastructure.database.repositories.visit import VisitRepository
+from app.presentation.web_api.dependencies.depends import get_visit_repository
 
 router = APIRouter()
 

@@ -1,3 +1,4 @@
+import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -19,7 +20,9 @@ class Settings(BaseSettings):
     def SYNC_DB_URL(self) -> str:
         return f"sqlite:///./{self.DB_NAME}.db"
 
-    model_config = SettingsConfigDict(env_file="src/app/main/config/.env")
+    model_config = SettingsConfigDict(
+        env_file=os.path.join(os.path.dirname(__file__), ".env"),
+    )
 
 
 settings = Settings()

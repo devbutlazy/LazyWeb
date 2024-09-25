@@ -10,14 +10,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from uvicorn.config import Config
 from uvicorn.server import Server
 
-from .config.config import settings
-from ..presentation.logger.logger import logger
-from ..presentation.telegram.handlers.common_handlers import router as common_router
-from ..presentation.telegram.handlers.post_handlers import router as post_router
+from app.main.config.config import settings
+from app.presentation.logger.logger import logger
+from app.presentation.telegram.handlers.common_handlers import router as common_router
+from app.presentation.telegram.handlers.post_handlers import router as post_router
 
-from ..presentation.web_api.routers.blog import router as blog_router
-from ..presentation.web_api.routers.message import router as message_router
-from ..presentation.web_api.routers.visit import router as visit_router
+from app.presentation.web_api.routers.blog import router as blog_router
+from app.presentation.web_api.routers.message import router as message_router
+from app.presentation.web_api.routers.visit import router as visit_router
 
 
 def init_routers(app: FastAPI) -> None:
