@@ -1,8 +1,8 @@
 from typing import AsyncGenerator
 
-from app.infrastructure.database.repositories.blog import BlogRepository
-from app.infrastructure.database.repositories.visit import VisitRepository
-from app.infrastructure.database.repositories.message import MessageRepository
+from src.app.infrastructure.database.repositories.blog import BlogRepository
+from src.app.infrastructure.database.repositories.visit import VisitRepository
+from src.app.infrastructure.database.repositories.message import MessageRepository
 
 
 async def get_blog_repository() -> AsyncGenerator[BlogRepository, None]:
