@@ -3,9 +3,9 @@ from typing import Self, Type, Any, Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import async_sessionmaker
 
-from app.infrastructure.database.repositories.base import BaseRepository
-from app.infrastructure.database import engine
-from app.infrastructure.database.models.blog import BlogORM
+from src.app.infrastructure.database.repositories.base import BaseRepository
+from src.app.infrastructure.database import engine
+from src.app.infrastructure.database.models.blog import BlogORM
 
 
 class BlogRepository(BaseRepository):
