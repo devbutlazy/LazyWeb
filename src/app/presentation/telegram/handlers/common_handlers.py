@@ -5,8 +5,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from app.presentation.telegram.models.models import AdminFilter, Form
 
-from app.presentation.telegram import reply_markup
-from app.infrastructure.database.repositories.blog import BlogRepository
+from src.app.presentation.telegram import reply_markup
+from src.app.infrastructure.database.repositories.blog import BlogRepository
 
 router = Router()
 
