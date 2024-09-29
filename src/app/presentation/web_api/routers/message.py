@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, Depends
 
-from app.presentation.web_api.schemas.schemas import MessageForm
-from ..dependencies.depends import get_message_repository
+from src.app.presentation.web_api.schemas.schemas import MessageForm
+from src.app.presentation.dependencies.depends import get_message_repository
 
 router = APIRouter()
 
