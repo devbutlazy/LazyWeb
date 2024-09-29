@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
 from async_lru import alru_cache
 
-from app.infrastructure.database.repositories.blog import BlogRepository
-from app.presentation.web_api.dependencies.depends import get_blog_repository
+from src.app.infrastructure.database.repositories.blog import BlogRepository
+from src.app.presentation.web_api.dependencies.depends import get_blog_repository
 
 router = APIRouter()
 
