@@ -2,9 +2,9 @@ from typing import Self
 
 from sqlalchemy.ext.asyncio import async_sessionmaker
 
-from app.infrastructure.database.repositories.base import BaseRepository
-from app.infrastructure.database import engine
-from app.infrastructure.database.models.visit import VisitORM
+from src.app.infrastructure.database.repositories.base import BaseRepository
+from src.app.infrastructure.database import engine
+from src.app.infrastructure.database.models.visit import VisitORM
 
 
 class VisitRepository(BaseRepository):
