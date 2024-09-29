@@ -1,7 +1,7 @@
 from sqlalchemy import Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.infrastructure.database.models.base import Base
+from src.app.infrastructure.database.models.base import Base
 
 
 class VisitORM(Base):
