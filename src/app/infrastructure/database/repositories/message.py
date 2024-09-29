@@ -5,9 +5,9 @@ from datetime import timedelta
 from aiohttp import ClientSession
 from fastapi import Request, HTTPException
 
-from app.main.config.config import settings
-from app.presentation.web_api.services.cooldown import CustomRateLimiter
-from app.presentation.web_api.services.ip_handler import IPAddressHandler
+from src.app.main.config.config import settings
+from src.app.presentation.web_api.services.cooldown import CustomRateLimiter
+from src.app.presentation.web_api.services.ip_handler import IPAddressHandler
 
 
 class MessageRepository:
