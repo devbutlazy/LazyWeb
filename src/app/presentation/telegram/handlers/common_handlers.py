@@ -2,11 +2,16 @@ from datetime import datetime
 
 from aiogram import Router
 from aiogram.fsm.context import FSMContext
-from aiogram.types import Message
-from src.app.presentation.telegram.models.models import AdminFilter, Form
+from aiogram.types import (
+    Message,
+    CallbackQuery,
+)
 
-from src.app.presentation.telegram import reply_markup
+from src.app.presentation.telegram.models.models import AdminFilter, Form
 from src.app.infrastructure.database.repositories.blog import BlogRepository
+from src.app.presentation.telegram.handlers.callbacks import RemovePostCallback
+from src.app.presentation.telegram import cancel_reply_markup, image_reply_markup
+
 
 router = Router()
 
@@ -25,7 +30,7 @@ async def handle_title(message: Message, state: FSMContext) -> None:
 
     await message.answer(
         "2/3 Enter post content (Markdown syntax is supported):",
-        reply_markup=reply_markup,
+        reply_markup=cancel_reply_markup,
     )
 
 
@@ -42,42 +47,65 @@ async def handle_content(message: Message, state: FSMContext) -> None:
     await state.set_state(Form.image_uri)
 
     await message.answer(
-        '3/3 Enter image URL (or type "skip" to skip this step):',
-        reply_markup=reply_markup,
+        '3/3 Enter image URL (or press "Skip" to skip this step):',
+        reply_markup=image_reply_markup,
     )
 
 
 @router.message(Form.image_uri, AdminFilter())
-async def handle_image(message: Message, state: FSMContext) -> Message:
+async def handle_image(message: Message, state: FSMContext) -> None:
     """
-    Process the image URI of the post. Saves the post to the database.
+    Process the image URI of the post. Saves the post to the database if "Skip" is pressed or a valid URL is provided.
 
     :param message: The message object
     :param state: The FSM context
     :return: None
     """
-    data = await state.update_data(image_uri=message.text)
+    image_uri = None if message.text.lower() == "skip" else message.text
+
+    data = await state.update_data(image_uri=image_uri)
     await state.clear()
 
-    title: str = data.get("title", "N/A")
-    content: str = data.get("content", "N/A")
-    image_uri: str = data.get("image_uri", "N/A")
+    title: str = data.get("title", "Not Found")
+    content: str = data.get("content", "Not Found")
 
     async with BlogRepository() as repository:
-        if _ := (
-            await repository.add_one(
-                title=title,
-                content=content,
-                image_uri=image_uri,
-                created_at=datetime.now().strftime("%d/%m/%Y %H:%M"),
-            )
-        ):
-            return await message.answer(
-                text=(
-                    f'<a href="{image_uri}">🌐</a> <b>Post created</b>\n\n'
-                    f"<b>Title:</b> {title}\n"
-                    f"<b>Content:</b>\n{content}"
-                )
-            )
+        await repository.add_one(
+            title=title,
+            content=content,
+            image_uri=image_uri,
+            created_at=datetime.now().strftime("%d/%m/%Y %H:%M"),
+        )
 
-        return await message.answer("An error occurred while adding a post")
+    image = f'<a href="{image_uri}">🌐</a> ' if image_uri else ""
+
+    await message.answer(
+        text=(
+            f"{image}<b>Post created</b>\n\n"
+            f"<b>Title:</b> {title}\n"
+            f"<b>Content:</b>\n{content}"
+        ),
+        reply_markup=None,
+    )
+
+
+@router.callback_query(RemovePostCallback.filter())
+async def handle_remove_post(
+    callback: CallbackQuery, callback_data: RemovePostCallback
+) -> None:
+    """
+    Handles the removal of the post when a button is pressed.
+    """
+
+    async with BlogRepository() as repository:
+        result = await repository.remove_one(id=callback_data.id)
+
+    if "removed" in result:
+        await callback.message.edit_text(
+            f"✅ <b>{result}</b>\n\nUse /remove_post to manage other posts."
+        )
+
+    else:
+        await callback.message.edit_text(f"❌ <b>{result}</b>")
+
+    await callback.answer()

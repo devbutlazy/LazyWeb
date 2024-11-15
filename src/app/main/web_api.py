@@ -13,8 +13,11 @@ from uvicorn.server import Server
 from src.app.main.config.config import settings
 from src.app.presentation.logger.logger import logger
 from src.app.presentation.telegram.handlers.common_handlers import router as common_router
-from src.app.presentation.telegram.handlers.post_handlers import router as post_router
+from src.app.presentation.telegram.handlers.commands_handlers import router as post_router
 
+from src.app.presentation.web_api.routers.blog import router as blog_router
+from src.app.presentation.web_api.routers.message import router as message_router
+from src.app.presentation.web_api.routers.visit import router as visit_router
 from src.app.presentation.web_api.routers.blog import router as blog_router
 from src.app.presentation.web_api.routers.message import router as message_router
 from src.app.presentation.web_api.routers.visit import router as visit_router

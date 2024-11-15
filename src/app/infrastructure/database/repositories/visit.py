@@ -43,3 +43,14 @@ class VisitRepository(BaseRepository):
                 session.add(counter)
 
             await session.commit()
+
+    async def set_vistis(self, **kwargs):
+        async with self.session() as session:
+            counter = await session.get(VisitORM, 1)
+            if counter:
+                counter.counter = kwargs.get("counter")
+            else:
+                counter = VisitORM(id=1, counter=kwargs.get("counter"))
+                session.add(counter)
+
+            await session.commit()

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://api.devbutlazy.xyz';
+const API_BASE_URL = 'http://localhost:8000'; // 'https://api.devbutlazy.xyz';
 
 async function fetchBlogs() {
     try {
@@ -7,6 +7,7 @@ async function fetchBlogs() {
         return data.blogs;
     } catch (error) {
         console.error('Error fetching blogs:', error);
+        return []; // Return an empty array if there's an error
     }
 }
 
@@ -40,20 +41,32 @@ function createBlogSection(blog) {
     `;
 }
 
-
+function createNoPostsSection(date) {
+    return `
+    <section class="shadow-blue white-bg padding">
+        <h3 class="section-title" id="dark">No Posts Found</h3>
+        <br>
+        <p class="text-muted">As of ${date}</p>
+    </section>
+    `;
+}
 
 async function displayBlogs() {
     const blogs = await fetchBlogs();
     const blogContainer = document.getElementById('blog-container');
 
-    blogs.reverse();
-
-    blogs.forEach(blog => {
-        const blogSection = createBlogSection(blog);
-        blogContainer.innerHTML += blogSection;
-    });
+    if (blogs.length === 0) {
+        const currentDate = new Date().toLocaleString(); // Get the current date and time
+        const noPostsSection = createNoPostsSection(currentDate);
+        blogContainer.innerHTML = noPostsSection;
+    } else {
+        blogs.reverse();
+        blogs.forEach(blog => {
+            const blogSection = createBlogSection(blog);
+            blogContainer.innerHTML += blogSection;
+        });
+    }
 }
-
 
 displayBlogs().then(() => {
     console.log('Blogs displayed successfully');

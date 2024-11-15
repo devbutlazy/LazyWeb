@@ -18,7 +18,7 @@
 
 	<script>
 		window.config = {
-			API_BASE_URL: 'https://api.devbutlazy.xyz',
+			API_BASE_URL: 'http://localhost:8000',//'https://api.devbutlazy.xyz',
 		};
 	</script>
 </head>
@@ -60,7 +60,7 @@
 									<!-- Sun -->
 
 									<div class="custom-control checkbox-cont"
-										 style="padding-left: 0; margin-bottom: 10px;">
+										style="padding-left: 0; margin-bottom: 10px;">
 										<label class="checkbox-google" for="darkSwitch">
 											<input class="custom-control-input" type="checkbox" id="darkSwitch">
 											<span class="checkbox-google-switch"></span>
@@ -97,7 +97,7 @@
 
 		<main class="content float-right">
 			<section class="hero background parallax shadow-dark d-flex align-items-center" id="home"
-					 src="images\logonofone_900.png">
+				src="images\logonofone_900.png">
 				<div class="cta mx-auto mt-2">
 					<h1 class="mt-0 mb-4">LazyDev<span class="dot"></span></h1>
 					<p class="mb-4">Explore detailed information about me and my work on this website.</p>
@@ -145,23 +145,24 @@
 			<section id="about" class="shadow-blue white-bg padding">
 				<h3 class="section-title" id="dark">About me</h3>
 				<div class="spacer" data-height="40"></div>
-				<div class="row">
-					<div class="col-md-3">
-						<img alt="about" loading="lazy" src="images/lazy_avatar.jpg" style="border-radius: 20px; ">
+				<div class="row align-items-center">
+					<div class="col-md-3 text-center">
+						<img alt="about" loading="lazy" src="images/lazy_avatar.jpg" style="border-radius: 20px;">
 					</div>
 					<div class="col-md-9">
-						<h2 id="dark" class="mt-4 mt-md-0 mb-4">Sup,</h2>
-						<p class="mb-0">I'm Lazy Developer, immersed in programming for more than 4 years now.
+						<h2 id="dark" class="mt-4 mt-md-0 mb-4">LazyDev,</h2>
+						<p class="mb-0">Immersed in programming for more than 4 years now.
 							<br><br>My main programming language is Python, which I use to automate various processes,
-							create scripts and bots.
+							create scripts, bots, websites and more.
 							<br><br>Open source projects - <a style="color: #0f97ff;" target="_blank"
 								href="https://github.com/devbutlazy">GitHub</a>
-							<br>Telegram blog - <a style="color: #0f97ff;" target="_blank"
+							<br>Telegram channel - <a style="color: #0f97ff;" target="_blank"
 								href="https://t.me/blogbutlazy">@blogbutlazy</a>
 						</p>
 					</div>
 				</div>
 			</section>
+
 
 			<section id="works" class="shadow-blue white-bg padding">
 				<h3 class="section-title" id="dark">Done Projects</h3>
@@ -173,7 +174,8 @@
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title" id="dark">GTokenChecker</h4>
-									<span class="term">One of the fastest and most productive tools worldwide for validating Discord tokens and getting information about them.</span>
+									<span class="term">One of the fastest and most productive tools worldwide for
+										validating Discord tokens and getting information about them.</span>
 								</div>
 								<div class="thumb">
 									<img loading="lazy" src="images/gtokenchecker.png" alt="GTokenChecker">
@@ -199,14 +201,15 @@
 					</div>
 
 					<div class="col-md-4 col-sm-6 grid-item">
-						<a target="_blank" href="https://github.com/devbutlazy/DiscoDance">
+						<a target="_blank" href="https://github.com/devbutlazy/Binance-Crypto-Box-Wrapper">
 							<div class="portfolio-item">
 								<div class="details">
-									<h4 class="title" id="dark">DiscoDance</h4>
-									<span class="term">A Discord music bot with user-friendly buttons for easy control.</span>
+									<h4 class="title" id="dark">Redpacket Wrapper</h4>
+									<span class="term">A tool to automatically wrap redpacket codes from telegram to
+										Binance.</span>
 								</div>
 								<div class="thumb">
-									<img loading="lazy" src="images/discodance.png" alt="ruina counter">
+									<img loading="lazy" src="images/binance_wrapper.png" alt="ruina counter">
 									<div class="mask"></div>
 								</div>
 							</div>
@@ -214,11 +217,13 @@
 					</div>
 
 					<div class="col-md-4 col-sm-6 grid-item">
-						<a target="_blank" href="https://github.com/devbutlazy/Telegram-OLX-Wrapper">
+						<a target="_blank" href="https://t.me/@olxwrapper_bot">
 							<div class="portfolio-item">
 								<div class="details">
-									<h4 class="title">Telegram OLX Wrapper</h4>
-									<span class="term">A Telegram bot for automatic searching of new ads using website scraping. Unfortunately, the project didn't launch due to issues with the premium system.</span>
+									<h4 class="title">Telegram OLX Wrapper [Offline]</h4>
+									<span class="term">A Telegram bot for automatic searching of new ads using website
+										scraping. Unfortunately, the project didn't launch due to issues with the
+										premium system.</span>
 								</div>
 								<div class="thumb">
 									<img loading="lazy" src="images/olxwrapper.png" alt="olxwrapper">
@@ -233,7 +238,8 @@
 							<div class="portfolio-item">
 								<div class="details">
 									<h4 class="title">Blum Auto-Clicker</h4>
-									<span class="term">Software for automatic points collection in Blum telegram bot, using numpy and pyautogui.</span>
+									<span class="term">Software for automatic points collection in Blum telegram bot,
+										using numpy and pyautogui.</span>
 								</div>
 								<div class="thumb">
 									<img loading="lazy" src="images/blumai.png" alt="Portfolio-title">
@@ -262,7 +268,7 @@
 
 
 			<section id="user-input" class="shadow-blue white-bg padding">
-				<h3 class="section-title" id="dark">Send a message</h3>
+				<h3 class="section-title" id="dark">Contact me</h3>
 				<div class="spacer" data-height="40"></div>
 				<div class="row">
 					<div class="col-md-12 mb-4 mb-md-0">
@@ -281,7 +287,8 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<textarea id="form_message" name="message" class="form-control"
-												placeholder="Message" rows="4" required="required"
+												placeholder="Hello LazyDev! Please contact me on @..., because of ..."
+												rows="4" required="required"
 												data-error="Please enter the message. This field is required."></textarea>
 											<div class="help-block with-errors"></div>
 										</div>
@@ -372,11 +379,40 @@
 						<div class="contact-info mb-5">
 							<i class="fas fa-money-bill"></i>
 							<div class="details">
-								<h5 id="dark">Donate</h5>
-								<a target="_blank" href="https://donatello.to/devbutlazy">donatello.to/devbutlazy</a>
+								<h5 id="dark">Donate (Crypto)</h5>
+								<div id="wallet-options">
+									<a href="#" onclick="copyToClipboard(event, 'TON')">TON</a> //
+									<a href="#" onclick="copyToClipboard(event, 'USDT')">USDT (TRC20)</a> //
+									<a href="#" onclick="copyToClipboard(event, 'DOGS')">DOGS</a>
+								</div>
 							</div>
 						</div>
 					</div>
+
+					<script>
+						const walletAddresses = {
+							TON: "UQD2g_C_aIeZ7-zAJ7uOQJUsr538vPcd_GljLeA-iRZL7tzF",
+							USDT: "TM58yiViFDHLcqvm11efeRVKuJHuwUVspW",
+							DOGS: "UQD2g_C_aIeZ7-zAJ7uOQJUsr538vPcd_GljLeA-iRZL7tzF"
+						};
+
+						function copyToClipboard(event, key) {
+							event.preventDefault(); // Prevent default link behavior
+							const walletAddress = walletAddresses[key];
+
+							if (walletAddress) {
+								navigator.clipboard.writeText(walletAddress)
+									.then(() => {
+										alert(`${key} wallet address copied to clipboard!`);
+									})
+									.catch((err) => {
+										console.error('Failed to copy:', err);
+									});
+							} else {
+								alert(`No wallet address found for ${key}`);
+							}
+						}
+					</script>
 				</div>
 			</section>
 		</main>
