@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000'; // 'https://api.devbutlazy.xyz';
+const API_BASE_URL = 'https://api.devbutlazy.xyz'; 
 
 async function fetchBlogs() {
     try {
