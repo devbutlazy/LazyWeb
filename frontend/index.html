@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>LazyDev • Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/all.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/slick.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/jquery.scrollbar.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/theme-switcher.css" type="text/css" media="all">
+
+	<script>
+		window.config = {
+			API_BASE_URL: 'https://api.devbutlazy.xyz',
+		};
+	</script>
+</head>
+
+<body>
+	<div id="preloader">
+		<div class="outer">
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="site-wrapper">
+		<div class="mobile-header py-2 px-3 mt-4">
+			<button class="menu-icon mr-2">
+				<span id="dark"></span>
+				<span id="dark"></span>
+				<span id="dark"></span>
+			</button>
+		</div>
+
+		<header class="left float-left shadow-dark" id="header">
+			<button type="button" class="close" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+
+			<div class="header-inner d-flex align-items-start flex-column">
+				<a href="/"><img src="images/main-logo.png" alt="icon"></a>
+
+				<nav>
+					<ul class="vertical-menu scrollspy">
+						<li>
+							<div class="row" style="margin-top: 0;">
+								<div class="col text-center d-flex justify-content-xl-center">
+									<i class="fas fa-sun d-xl-flex align-items-xl-center"
+										style="font-size: 22px; margin-right: 10px; margin-bottom: 10px;"></i>
+									<!-- Sun -->
+
+									<div class="custom-control checkbox-cont"
+										style="padding-left: 0; margin-bottom: 10px;">
+										<label class="checkbox-google" for="darkSwitch">
+											<input class="custom-control-input" type="checkbox" id="darkSwitch">
+											<span class="checkbox-google-switch"></span>
+										</label>
+									</div>
+
+									<i class="fas fa-moon d-xl-flex align-items-xl-center"
+										style="font-size: 22px; margin-bottom: 10px;"></i>
+									<!-- Moon -->
+								</div>
+							</div>
+						</li>
+
+						<li><a href="#home" class="active"><i class="icon-home"></i>Home</a></li>
+						<li><a href="#about"><i class="icon-user"></i>About me</a></li>
+						<!-- <li><a href="#contact"><i class="icon-paper-plane"></i>Contact</a></li> -->
+						<li><a href="https://ddrv.devbutlazy.xyz" target="blank"><i class="icon-folder"></i>DDRV</a>
+						<li><a href="https://blog.devbutlazy.xyz" target="blank"><i class="icon-puzzle"></i>Blog</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="footer mt-auto">
+					<ul class="social-icons list-inline">
+						<li class="list-inline-item"><a href="https://github.com/devbutlazy" target="blank"><i
+									class="fab fa-github"></i></a></li>
+						<li class="list-inline-item"><a href="https://t.me/devbutlazy" target="blank"><i
+									class="fab fa-telegram"></i></a></li>
+					</ul>
+					<a href="https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt" target="blank"><span
+							class="copyright">© 2024 LazyDev</span></a>
+				</div>
+			</div>
+		</header>
+
+		<main class="content float-right">
+			<section class="hero background parallax shadow-dark d-flex align-items-center" id="home"
+				src="images\logonofone_900.png">
+				<div class="cta mx-auto mt-2">
+					<h1 class="mt-0 mb-4">LazyDev<span class="dot"></span></h1>
+					<p class="mb-4">Explore detailed information about me and my work on this website.</p>
+					<p class="mb-4"><b>Total visits: </b><span id="visitsCount"></span></p>
+					<!-- Display the visits count here -->
+					<script>
+						const url = `${window.config.API_BASE_URL}/get_visits`;
+						const increment_url = `${window.config.API_BASE_URL}/increment_visits`;
+
+						function formatNumber(num) {
+							if (num >= 1000000) {
+								return (num / 1000000).toFixed(1) + 'm';
+							} else if (num >= 1000) {
+								return (num / 1000).toFixed(1) + 'k';
+							} else {
+								return num.toString();
+							}
+						}
+
+						async function fetchData() {
+							try {
+								const incrementResponse = await fetch(increment_url, {
+									method: 'POST'
+								});
+
+								const response = await fetch(url);
+
+								if (!response.ok && !incrementResponse.ok) {
+									throw new Error('An error occurred while fetching the data');
+								}
+
+								const data = await response.json();
+								document.getElementById('visitsCount').innerText = formatNumber(data.visits);
+							} catch (error) {
+								document.getElementById('visitsCount').innerText = 'An error occurred while fetching the data';
+							}
+						}
+
+						fetchData();
+					</script>
+				</div>
+				<div class="overlay"></div>
+			</section>
+
+			<section id="about" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">About me</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row align-items-center">
+					<div class="col-md-3 text-center">
+						<img alt="about" loading="lazy" src="images/lazy_avatar.jpg" style="border-radius: 20px;">
+					</div>
+					<div class="col-md-9">
+						<h2 id="dark" class="mt-4 mt-md-0 mb-4">LazyDev,</h2>
+						<p class="mb-0">Immersed in programming for more than 4 years now.
+							<br><br>My main programming language is Python, which I use to automate various processes,
+							create scripts, bots, websites and more.
+							<br><br>Open source projects - <a style="color: #0f97ff;" target="_blank"
+								href="https://github.com/devbutlazy">GitHub</a>
+							<br>Telegram channel - <a style="color: #0f97ff;" target="_blank"
+								href="https://t.me/blogbutlazy">@blogbutlazy</a>
+						</p>
+					</div>
+				</div>
+			</section>
+
+
+			<section id="works" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Done Projects</h3>
+				<div class="spacer" data-height="40"></div>
+
+				<div class="row portfolio-wrapper">
+					<div class="col-md-4 col-sm-6 grid-item">
+						<a target="_blank" href="https://github.com/devbutlazy/GTokenChecker">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title" id="dark">GTokenChecker</h4>
+									<span class="term">One of the fastest and most productive tools worldwide for
+										validating Discord tokens and getting information about them.</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/gtokenchecker.png" alt="GTokenChecker">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item">
+						<a target="_blank" href="https://github.com/devbutlazy/lazy-website">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title" id="dark">devbutlazy.xyz</h4>
+									<span class="term">Portfolio website</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/lazydev-web.png" alt="LazyDev Portfolio">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item">
+						<a target="_blank" href="https://github.com/devbutlazy/Binance-Crypto-Box-Wrapper">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title" id="dark">Redpacket Wrapper</h4>
+									<span class="term">A tool to automatically wrap redpacket codes from telegram to
+										Binance.</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/binance_wrapper.png" alt="ruina counter">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item">
+						<a target="_blank" href="https://t.me/@olxwrapper_bot">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">Telegram OLX Wrapper [Offline]</h4>
+									<span class="term">A Telegram bot for automatic searching of new ads using website
+										scraping. Unfortunately, the project didn't launch due to issues with the
+										premium system.</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/olxwrapper.png" alt="olxwrapper">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item">
+						<a target="_blank" href="https://github.com/devbutlazy/blum-auto-clicker">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">Blum Auto-Clicker</h4>
+									<span class="term">Software for automatic points collection in Blum telegram bot,
+										using numpy and pyautogui.</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/blumai.png" alt="Portfolio-title">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col-md-4 col-sm-6 grid-item">
+						<a target="_blank" href="https://github.com/devbutlazy/LazyTweaker">
+							<div class="portfolio-item">
+								<div class="details">
+									<h4 class="title">LazyTweaker</h4>
+									<span class="term">Windows 11 mini-tweaker written in C++, just for practice.</span>
+								</div>
+								<div class="thumb">
+									<img loading="lazy" src="images/lazytweaker.png" alt="Portfolio-title">
+									<div class="mask"></div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</section>
+
+
+			<section id="user-input" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Contact me</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row">
+					<div class="col-md-12 mb-4 mb-md-0">
+						<div class="contact-form">
+							<form id="contact-form" action="javascript:void(0);" method="post">
+								<div class="messages"></div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input id="form_name" type="text" name="name" class="form-control"
+												placeholder="Your name" required="required"
+												data-error="Please enter your name. This field is required.">
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea id="form_message" name="message" class="form-control"
+												placeholder="Hello LazyDev! Please contact me on @..., because of ..."
+												rows="4" required="required"
+												data-error="Please enter the message. This field is required."></textarea>
+											<div class="help-block with-errors"></div>
+										</div>
+									</div>
+									<div class="col-md-12">
+										<button type="submit" class="btn btn-primary">Send</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script>
+				$(document).ready(function () {
+					$('#contact-form').submit(function (event) {
+						event.preventDefault(); // Prevent default form submission
+						const formData = {
+							name: $('#form_name').val(),
+							message: $('#form_message').val()
+						};
+
+						$.ajax({
+							type: 'POST',
+							url: `${window.config.API_BASE_URL}/send_message`,
+							headers: {
+								'Content-Type': 'application/json'
+							},
+							data: JSON.stringify(formData),
+							success: function (response) {
+								$('.messages').html('<div class="alert alert-success">Message sent!</div>');
+								setTimeout(function () {
+									$('.messages').empty();
+								}, 5000);
+
+								$('#form_name').val('');
+								$('#form_message').val('');
+							},
+							error: function (error) {
+								$('.messages').html('<div class="alert alert-danger">Cooldown, please try again later!</div>');
+								setTimeout(function () {
+									$('.messages').empty();
+								}, 5000);
+							}
+						});
+
+					});
+				});
+			</script>
+
+
+			<section class="shadow-blue white-bg padding" id="contact">
+				<h3 class="section-title" id="dark">Links</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row">
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fas fa-envelope"></i>
+							<div class="details">
+								<h5 id="dark">Email address</h5>
+								<span><a href="mailto:devbutlazy@outlook.com">devbutlazy@outlook.com</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fab fa-steam"></i>
+							<div class="details">
+								<h5 id="dark">Steam</h5>
+								<a href="https://steamcommunity.com/profiles/76561199535902664/"
+									target="_blank">@devbutlazy</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fab fa-telegram"></i>
+							<div class="details">
+								<h5 id="dark">Blog</h5>
+								<a href="https://t.me/blogbutlazy" target="_blank">@blogbutlazy</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fas fa-money-bill"></i>
+							<div class="details">
+								<h5 id="dark">Donate (Crypto)</h5>
+								<div id="wallet-options">
+									<a href="#" onclick="copyToClipboard(event, 'TON')">TON</a> //
+									<a href="#" onclick="copyToClipboard(event, 'USDT')">USDT (TRC20)</a> //
+									<a href="#" onclick="copyToClipboard(event, 'DOGS')">DOGS</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<script>
+						const walletAddresses = {
+							TON: "UQD2g_C_aIeZ7-zAJ7uOQJUsr538vPcd_GljLeA-iRZL7tzF",
+							USDT: "TM58yiViFDHLcqvm11efeRVKuJHuwUVspW",
+							DOGS: "UQD2g_C_aIeZ7-zAJ7uOQJUsr538vPcd_GljLeA-iRZL7tzF"
+						};
+
+						function copyToClipboard(event, key) {
+							event.preventDefault(); // Prevent default link behavior
+							const walletAddress = walletAddresses[key];
+
+							if (walletAddress) {
+								navigator.clipboard.writeText(walletAddress)
+									.then(() => {
+										alert(`${key} wallet address copied to clipboard!`);
+									})
+									.catch((err) => {
+										console.error('Failed to copy:', err);
+									});
+							} else {
+								alert(`No wallet address found for ${key}`);
+							}
+						}
+					</script>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+	<!-- SCRIPTS <script data-cfasync="false" src="js/email-decode.min.js"></script>  -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/theme-switcher.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Boostrap -->
+	<script src="js/jquery.counterup.min.js"></script>
+	<!-- Section titles normalization -->
+	<script src="js/jquery.easing.min.js"></script>
+	<script src="js/jquery.scrollbar.min.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/imagesloaded.min.js"></script>
+	<!-- Images normalization -->
+	<script src="js/custom.js"></script>
+	<!-- Web loading -->
+</body>
+
+</html>

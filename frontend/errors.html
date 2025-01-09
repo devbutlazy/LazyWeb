@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!--# echo var="status" --></title>
+    <style>
+        * {
+            background-color: #242424;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: "Cantarell var", sans-serif;
+            font-weight: 800;
+            font-variation-settings: "wght" 800;
+            margin: 0.5em 0;
+        }
+
+        p {
+            font-family: "Cantarell var", sans-serif;
+            font-weight: 500;
+            font-variation-settings: "wght" 500;
+            margin: 0.5em 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 1em;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 90%;
+            width: 650px;
+            padding: 1em;
+        }
+
+        .button {
+            font-family: "Cantarell var", sans-serif;
+            font-weight: 700;
+            font-variation-settings: "wght" 700;
+            background-color: #3A3A3A;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 100px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background-color: #454545;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 2em;
+            }
+
+            .container {
+                padding: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" height="150px" viewBox="0 0 16 16" width="150px">
+            <path
+                d="m 8 0 c -4.421875 0 -8 3.578125 -8 8 s 3.578125 8 8 8 s 8 -3.578125 8 -8 s -3.578125 -8 -8 -8 z m -3 4 c 0.265625 0 0.519531 0.105469 0.707031 0.292969 l 2.292969 2.292969 l 2.292969 -2.292969 c 0.1875 -0.1875 0.441406 -0.292969 0.707031 -0.292969 s 0.519531 0.105469 0.707031 0.292969 c 0.390625 0.390625 0.390625 1.023437 0 1.414062 l -2.292969 2.292969 l 2.292969 2.292969 c 0.390625 0.390625 0.390625 1.023437 0 1.414062 s -1.023437 0.390625 -1.414062 0 l -2.292969 -2.292969 l -2.292969 2.292969 c -0.390625 0.390625 -1.023437 0.390625 -1.414062 0 s -0.390625 -1.023437 0 -1.414062 l 2.292969 -2.292969 l -2.292969 -2.292969 c -0.390625 -0.390625 -0.390625 -1.023437 0 -1.414062 c 0.1875 -0.1875 0.441406 -0.292969 0.707031 -0.292969 z m 0 0"
+                fill="#9c9c9c" />
+        </svg>
+        <br />
+
+        <h1>Error <!--# echo var="status" --></h1>
+        <p>
+            <!--# if expr="$status = 404" -->
+            The page you were looking is found.
+            <!--# elif expr="$status = 418" -->
+            I'm a teapot.
+            <!--# elif expr="$status = 403" -->
+            You don't have permission to access this page.
+            <!--# elif expr="$status = /4\d\d/" -->
+            Your browser sent a request that the server was unable
+            to process.
+            <!--# elif expr="$status = /5\d\d/" -->
+            The server encountered an error and could not complete
+            your request. Please try again later.
+            <!--# else -->
+            Something went wrong while trying to display this page.
+            Please try again later.
+            <!--# endif -->
+        </p>
+        <br />
+        <!--# if expr="$status = /4\d\d/" -->
+        <a href="https://devbutlazy.xyz" class="button">Home</a>
+        <a class="button" href="https://blog.devbutlazy.xyz" style="margin-left: 10px;" target="_blank">Blog</a>
+        <!--# endif -->
+    </div>
+</body>
+
+</html>

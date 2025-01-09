@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>LazyDev • Blogs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.0.17/purify.min.js"></script>
+
+
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/all.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/simple-line-icons.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/slick.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/jquery.scrollbar.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/theme-switcher.css" type="text/css" media="all">
+</head>
+
+<body>
+	<div id="preloader">
+		<div class="outer">
+			<div class="spinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="site-wrapper">
+		<div class="mobile-header py-2 px-3 mt-4">
+			<button class="menu-icon mr-2">
+				<span id="dark"></span>
+				<span id="dark"></span>
+				<span id="dark"></span>
+			</button>
+		</div>
+
+		<header class="left float-left shadow-dark" id="header">
+			<button type="button" class="close" aria-label="Close">
+				<span aria-hidden="true">×</span>
+			</button>
+
+			<div class="header-inner d-flex align-items-start flex-column">
+				<a href="/"><img src="images/main-logo.png" alt="icon"></a>
+
+				<nav>
+					<ul class="vertical-menu scrollspy">
+						<li>
+							<div class="row" style="margin-top: 15px;">
+								<div class="col text-center d-flex justify-content-xl-center">
+									<i class="fas fa-sun d-xl-flex align-items-xl-center"
+										style="font-size: 22px; margin-right: 10px; margin-bottom: 10px;"></i>
+									<!-- Sun -->
+
+									<div class="custom-control checkbox-cont"
+										style="padding-left: 0; margin-bottom: 10px;">
+										<label class="checkbox-google" for="darkSwitch">
+											<input class="custom-control-input" type="checkbox" id="darkSwitch">
+											<span class="checkbox-google-switch"></span>
+										</label>
+									</div>
+
+									<i class="fas fa-moon d-xl-flex align-items-xl-center"
+										style="font-size: 22px; margin-bottom: 10px;"></i>
+									<!-- Moon -->
+								</div>
+							</div>
+						</li>
+						<li><a href="https://devbutlazy.xyz"><i class="icon-home"></i>Home</a></li>
+						<li><a href="https://blog.devbutlazy.xyz" class="active"><i class="icon-user"></i>Blog</a></li>
+						<li><a href="https://ddrv.devbutlazy.xyz" target="blank"><i class="icon-folder"></i>DDRV</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="footer mt-auto">
+					<ul class="social-icons list-inline">
+						<li class="list-inline-item"><a href="https://github.com/devbutlazy" target="blank"><i
+									class="fab fa-github"></i></a></li>
+						<li class="list-inline-item"><a href="https://t.me/devbutlazy" target="blank"><i
+									class="fab fa-telegram"></i></a></li>
+					</ul>
+					<a href="https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt" target="blank"><span
+							class="copyright">© 2024 LazyDev</span></a>
+				</div>
+			</div>
+		</header>
+
+		<main class="content float-right">
+
+			<div id="blog-container" class="container mt-5"></div>
+
+			<section id="contact" class="shadow-blue white-bg padding">
+				<h3 class="section-title" id="dark">Links</h3>
+				<div class="spacer" data-height="40"></div>
+				<div class="row">
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fas fa-envelope"></i>
+							<div class="details">
+								<h5 id="dark">Email address</h5>
+								<span><a href="mailto:devbutlazy@outlook.com">devbutlazy@outlook.com</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fab fa-steam"></i>
+							<div class="details">
+								<h5 id="dark">Steam</h5>
+								<a href="https://steamcommunity.com/profiles/76561199535902664/"
+									target="_blank">@devbutlazy</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fab fa-telegram"></i>
+							<div class="details">
+								<h5 id="dark">Blog</h5>
+								<a href="https://t.me/blogbutlazy" target="_blank">@blogbutlazy</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 mb-4 mb-md-0">
+						<div class="contact-info mb-5">
+							<i class="fas fa-money-bill"></i>
+							<div class="details">
+								<h5 id="dark">Donate</h5>
+								<a target="_blank" href="https://donatello.to/devbutlazy">donatello.to/devbutlazy</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+	<!-- SCRIPTS <script data-cfasync="false" src="js/email-decode.min.js"></script>  -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/theme-switcher.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Boostrap -->
+	<script src="js/jquery.counterup.min.js"></script>
+	<!-- Section titles normalization -->
+	<script src="js/jquery.easing.min.js"></script>
+	<script src="js/jquery.scrollbar.min.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/imagesloaded.min.js"></script>
+	<!-- Images normalization -->
+	<script src="js/custom.js"></script>
+    <script src="js/blogs.js"></script>
+	<!-- Web loading -->
+</body>
+
+</html>
