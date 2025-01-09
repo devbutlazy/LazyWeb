@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  app:
+  backend:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
@@ -10,4 +10,4 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ..:/app
+      - ..:/backend

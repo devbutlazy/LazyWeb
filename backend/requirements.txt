@@ -1,0 +1,15 @@
+alembic
+aiosqlite
+aiohttp
+aiogram
+async-lru
+loguru
+
+fastapi
+SQLAlchemy
+uvicorn
+
+pydantic
+pydantic-settings
+python-multipart
+black

@@ -1,6 +1,6 @@
-FROM python:3.11
+FROM python:3.12
 
-WORKDIR /app
+WORKDIR /backend
 
 COPY requirements.txt .
 
@@ -9,8 +9,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install -r requirements.txt
 
 COPY . .
-COPY src/app/main/config/.env /app/src/app/main/config/.env
+COPY config/.env /backend/config/.env
 
-CMD ["sh", "-c", "python -m src.app.main.web_api --create"]
+CMD ["sh", "-c", "python -m main.py --create"]
 # Edit to --upgrade if you want to upgrade revision to main
 # Remove the flags if you want to normally start the program (revision should be created and upgraded)

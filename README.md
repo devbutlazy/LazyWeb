@@ -8,12 +8,8 @@
 `3` Download and install docker:  
 ```
 - Ubuntu:
-[1] sudo apt install docker.io
-[2] sudo curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-compose-$(uname -s)-$(uname -m)"  -o /usr/local/bin/docker-compose
-[3] sudo mv /usr/local/bin/docker-compose /usr/bin/docker-compose
-[4] sudo chmod +x /usr/bin/docker-compose
-[5] systemctl enable docker
-[6] systemctl start docker
+[1] sudo apt update
+[2] sudo apt install docker.io docker-compose
 
 - Windows:
 [1] Download and install docker from https://www.docker.com/products/docker-desktop/
